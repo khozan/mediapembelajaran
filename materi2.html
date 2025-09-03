@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misi 1: Media Tradisional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #020024 0%, #090979 35%, #00d4ff 100%);
+            overflow-x: hidden;
+            color: #e0f2fe; /* Light sky blue text */
+        }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .glass-card {
+            background: rgba(2, 0, 36, 0.3);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+        .nav-button {
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid rgba(0, 212, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        .nav-button:hover {
+            background: rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .back-button {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: 50;
+        }
+        .quiz-option {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+        .quiz-option:hover {
+            background-color: rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.8);
+        }
+        .quiz-option.selected {
+            background-color: rgba(0, 212, 255, 0.3);
+            border-color: #00d4ff;
+        }
+        .quiz-option.correct {
+            background-color: rgba(22, 163, 74, 0.5);
+            border-color: #16a34a;
+        }
+        .quiz-option.incorrect {
+            background-color: rgba(220, 38, 38, 0.5);
+            border-color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Container Utama -->
+    <div class="min-h-screen p-4 sm:p-8">
+
+        <!-- ===== HALAMAN UTAMA (HOME) ===== -->
+        <section id="homeSection" class="min-h-screen flex flex-col items-center justify-center text-center">
+            <div class="glass-card max-w-4xl w-full">
+                <h1 class="font-cinzel text-4xl md:text-6xl font-bold" style="text-shadow: 0 0 15px rgba(0, 212, 255, 0.8);">Misi 1: Media Tradisional</h1>
+                <p class="mt-4 mb-8 max-w-2xl mx-auto text-gray-300">Selamat datang, petualang ilmu! Di misi ini, kita akan menjelajahi kekuatan media klasik yang tak lekang oleh waktu dalam pembelajaran Bahasa Arab. Siapkan dirimu untuk mengungkap rahasia di baliknya.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <button onclick="showSection('materiSection')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-book-open text-3xl mb-2"></i><br>Buka Materi
+                    </button>
+                    <button onclick="showSection('quizSection')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-question-circle text-3xl mb-2"></i><br>Uji Pengetahuan
+                    </button>
+                    <button onclick="showSection('kasusPblSection')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-scroll text-3xl mb-2"></i><br>Studi Kasus
+                    </button>
+                    <button onclick="showSection('penelitianAwalSection')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-tasks text-3xl mb-2"></i><br>Tugas Awal
+                    </button>
+                </div>
+                 <!-- Anda bisa mengganti '#' dengan link ke halaman utama sebelumnya -->
+                <a href="index.html" class="inline-block mt-8 text-cyan-300 hover:text-white transition">
+                    <i class="fas fa-arrow-left mr-2"></i>Kembali ke Peta Misi
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI ===== -->
+        <section id="materiSection" class="hidden relative min-h-screen flex flex-col items-center justify-center">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-5xl w-full">
+                <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-center mb-8">Gudang Ilmu: Media Tradisional</h2>
+                <div class="space-y-6 text-gray-300">
+                    <div>
+                        <h3 class="font-semibold text-xl text-cyan-300 mb-2"><i class="fas fa-info-circle mr-2"></i>Pengertian</h3>
+                        <p>Media tradisional adalah alat bantu pembelajaran yang tidak bergantung pada teknologi digital. Media ini seringkali bersifat fisik, sederhana, dan telah digunakan selama bertahun-tahun untuk membantu pemahaman siswa.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-xl text-cyan-300 mb-2"><i class="fas fa-sitemap mr-2"></i>Jenis-jenis Media</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><b>Visual:</b> Kartu kosakata (bithaqah), poster, gambar tempel, papan flanel, dan benda nyata (realia).</li>
+                            <li><b>Audiovisual Non-Digital:</b> Kaset atau CD audio berisi percakapan, radio berbahasa Arab, film atau DVD sederhana.</li>
+                            <li><b>Interaktif:</b> Papan tulis, permainan papan (board games) edukatif, atau boneka tangan untuk bermain peran.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-xl text-cyan-300 mb-2"><i class="fas fa-cogs mr-2"></i>Fungsi Utama</h3>
+                        <p>Fungsinya adalah untuk memperjelas penyajian pesan, mengatasi keterbatasan ruang dan waktu, meningkatkan gairah belajar, dan memungkinkan interaksi langsung antara siswa dengan sumber belajar.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-xl text-cyan-300 mb-2"><i class="fas fa-balance-scale mr-2"></i>Kelebihan & Kelemahan</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><b class="text-green-400">Kelebihan:</b> Mudah didapat, biaya terjangkau, tidak memerlukan listrik, mendorong kreativitas guru, dan fokus pada interaksi manusiawi.</li>
+                            <li><b class="text-red-400">Kelemahan:</b> Cenderung statis, jangkauan terbatas, memerlukan perawatan fisik, dan terkadang kurang menarik bagi generasi digital.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN QUIZ ===== -->
+        <section id="quizSection" class="hidden relative min-h-screen flex flex-col items-center justify-center">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-center mb-8">Arena Ujian</h2>
+                <div id="quizContainer" class="space-y-6"></div>
+                <div class="text-center mt-8">
+                    <button id="submitQuizBtn" class="nav-button py-3 px-8 rounded-lg font-bold text-lg">Cek Jawaban</button>
+                    <p id="quizResult" class="mt-4 text-xl font-bold"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN KASUS PBL & IDENTIFIKASI MASALAH ===== -->
+        <section id="kasusPblSection" class="hidden relative min-h-screen flex flex-col items-center justify-center">
+             <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-5xl w-full">
+                <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-center mb-6">Tantangan di Kelas Pak Ahmad</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Narasi Kasus -->
+                    <div class="text-gray-300 space-y-4 p-4 border border-cyan-500/30 rounded-lg">
+                        <p>Bapak Ahmad adalah seorang guru bahasa Arab berpengalaman. Di kelasnya, sebagian besar siswa menghadapi kesulitan besar dalam keterampilan berbicara (kalam) dan mendengarkan (istima'), merasa canggung dan kurang percaya diri.</p>
+                        <p>Beliau menyadari media tradisional seperti buku teks kurang efektif membangkitkan motivasi. Beliau berinisiatif menggunakan media visual (gambar, video) dan audiovisual (rekaman audio) untuk meningkatkan kualitas pengajaran.</p>
+                        <p>Namun, beliau menghadapi tantangan: belum sepenuhnya menguasai teknik penggunaan media tersebut, fasilitas sekolah terbatas (minim proyektor/komputer), dan harus mempertimbangkan variasi gaya belajar siswa. Bapak Ahmad bertekad menemukan cara efektif untuk mengintegrasikan media tersebut dengan sumber daya yang terbatas.</p>
+                        <h3 class="font-semibold text-xl text-cyan-300 pt-4">Pertanyaan yang Dihadapi:</h3>
+                        <ul class="list-decimal list-inside space-y-2">
+                            <li>Bagaimana cara menggunakan media visual (gambar, infografis) untuk menarik minat siswa?</li>
+                            <li>Bagaimana memanfaatkan media audiovisual (video, audio) untuk meningkatkan skill berbicara dan mendengarkan?</li>
+                            <li>Strategi apa untuk mengatasi keterbatasan fasilitas sekolah?</li>
+                            <li>Bagaimana menyesuaikan penggunaan media ini dengan berbagai gaya belajar siswa?</li>
+                        </ul>
+                    </div>
+                    <!-- Identifikasi Masalah -->
+                    <div class="p-4 border border-cyan-500/30 rounded-lg">
+                        <h3 class="font-semibold text-xl text-cyan-300 mb-4">Identifikasi Masalah</h3>
+                        <p class="mb-4 text-gray-300">Pilih masalah-masalah utama yang dihadapi Bapak Ahmad (bisa lebih dari satu).</p>
+                        <div class="space-y-3">
+                            <label class="flex items-center p-3 rounded-lg bg-gray-900/50 border border-cyan-500/30 cursor-pointer hover:bg-gray-800/50">
+                                <input type="checkbox" class="h-5 w-5 rounded text-cyan-400 bg-gray-700 border-gray-600 focus:ring-cyan-500">
+                                <span class="ml-3">Mayoritas siswa lemah dalam keterampilan berbicara & mendengarkan.</span>
+                            </label>
+                            <label class="flex items-center p-3 rounded-lg bg-gray-900/50 border border-cyan-500/30 cursor-pointer hover:bg-gray-800/50">
+                                <input type="checkbox" class="h-5 w-5 rounded text-cyan-400 bg-gray-700 border-gray-600 focus:ring-cyan-500">
+                                <span class="ml-3">Media tradisional kurang efektif untuk memotivasi siswa.</span>
+                            </label>
+                             <label class="flex items-center p-3 rounded-lg bg-gray-900/50 border border-cyan-500/30 cursor-pointer hover:bg-gray-800/50">
+                                <input type="checkbox" class="h-5 w-5 rounded text-cyan-400 bg-gray-700 border-gray-600 focus:ring-cyan-500">
+                                <span class="ml-3">Guru belum menguasai teknik pemanfaatan media visual & audiovisual.</span>
+                            </label>
+                            <label class="flex items-center p-3 rounded-lg bg-gray-900/50 border border-cyan-500/30 cursor-pointer hover:bg-gray-800/50">
+                                <input type="checkbox" class="h-5 w-5 rounded text-cyan-400 bg-gray-700 border-gray-600 focus:ring-cyan-500">
+                                <span class="ml-3">Keterbatasan fasilitas sekolah (komputer/proyektor).</span>
+                            </label>
+                            <label class="flex items-center p-3 rounded-lg bg-gray-900/50 border border-cyan-500/30 cursor-pointer hover:bg-gray-800/50">
+                                <input type="checkbox" class="h-5 w-5 rounded text-cyan-400 bg-gray-700 border-gray-600 focus:ring-cyan-500">
+                                <span class="ml-3">Perlunya penyesuaian media dengan gaya belajar siswa yang beragam.</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN PENELITIAN AWAL ===== -->
+        <section id="penelitianAwalSection" class="hidden relative min-h-screen flex flex-col items-center justify-center">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-4xl w-full">
+                <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-center mb-8">Tugas Pra-Petualangan</h2>
+                <p class="text-center mb-6 text-gray-300">Lakukan penelitian mandiri mengenai poin-poin berikut sebelum kelas:</p>
+                <div class="space-y-4">
+                    <label class="flex items-center p-4 rounded-lg bg-gray-900/50 border border-cyan-500/30 cursor-pointer hover:bg-gray-800/50">
+                        <input type="checkbox" class="h-6 w-6 rounded text-cyan-400 bg-gray-700 border-gray-600 focus:ring-cyan-500">
+                        <span class="ml-4 text-lg">Media Visual: Cari info jenis media visual (gambar, diagram, peta konsep) untuk pembelajaran Bahasa Arab.</span>
+                    </label>
+                    <label class="flex items-center p-4 rounded-lg bg-gray-900/50 border border-cyan-500/30 cursor-pointer hover:bg-gray-800/50">
+                        <input type="checkbox" class="h-6 w-6 rounded text-cyan-400 bg-gray-700 border-gray-600 focus:ring-cyan-500">
+                        <span class="ml-4 text-lg">Media Audiovisual: Pelajari bagaimana video, film pendek, dan rekaman audio dapat meningkatkan skill berbicara & mendengarkan.</span>
+                    </label>
+                    <label class="flex items-center p-4 rounded-lg bg-gray-900/50 border border-cyan-500/30 cursor-pointer hover:bg-gray-800/50">
+                        <input type="checkbox" class="h-6 w-6 rounded text-cyan-400 bg-gray-700 border-gray-600 focus:ring-cyan-500">
+                        <span class="ml-4 text-lg">Teknik & Strategi: Temukan strategi efektif untuk mengintegrasikan kedua jenis media dalam pengajaran Bahasa Arab.</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const synth = new Tone.Synth().toDestination();
+
+        // --- Navigation Logic ---
+        function showSection(sectionId) {
+            Tone.start();
+            synth.triggerAttackRelease('C4', '8n');
+            sections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+            window.scrollTo(0, 0);
+        }
+
+        // --- Quiz Logic ---
+        const quizData = [
+            { question: "Media tradisional yang menggunakan benda nyata dalam pembelajaran disebut...", options: ["Realia", "Poster", "Papan Flanel", "Kartu Kosakata"], answer: "Realia" },
+            { question: "Fungsi utama media tradisional dalam pembelajaran adalah...", options: ["Menggantikan peran guru", "Memperjelas penyajian pesan", "Membuat siswa bergantung pada teknologi", "Menghilangkan kebutuhan buku teks"], answer: "Memperjelas penyajian pesan" },
+            { question: "Salah satu kelemahan utama media tradisional adalah...", options: ["Harganya sangat mahal", "Membutuhkan koneksi internet", "Cenderung bersifat statis", "Sulit dibuat oleh guru"], answer: "Cenderung bersifat statis" },
+            { question: "Berikut ini yang merupakan contoh media audiovisual tradisional adalah...", options: ["Aplikasi mobile", "Video YouTube", "Kaset berisi percakapan", "Game edukasi online"], answer: "Kaset berisi percakapan" },
+            { question: "Manfaat utama penggunaan kartu kosakata (bithaqah) adalah...", options: ["Menghafal kosakata baru secara efektif", "Melatih keterampilan mengetik", "Mengakses informasi online", "Menggantikan papan tulis"], answer: "Menghafal kosakata baru secara efektif" }
+        ];
+
+        const quizContainer = document.getElementById('quizContainer');
+        const submitQuizBtn = document.getElementById('submitQuizBtn');
+        const quizResult = document.getElementById('quizResult');
+
+        function loadQuiz() {
+            quizContainer.innerHTML = '';
+            quizData.forEach((item, index) => {
+                const questionEl = document.createElement('div');
+                questionEl.classList.add('mb-4');
+                questionEl.innerHTML = `<p class="font-semibold text-lg mb-3">${index + 1}. ${item.question}</p>`;
+                
+                const optionsEl = document.createElement('div');
+                optionsEl.classList.add('space-y-2');
+                optionsEl.id = `q${index}`;
+
+                item.options.forEach(option => {
+                    optionsEl.innerHTML += `
+                        <label class="quiz-option block p-3 rounded-lg cursor-pointer">
+                            <input type="radio" name="question${index}" value="${option}" class="hidden">
+                            <span>${option}</span>
+                        </label>
+                    `;
+                });
+                questionEl.appendChild(optionsEl);
+                quizContainer.appendChild(questionEl);
+            });
+            
+            // Add event listeners to options for visual feedback
+            document.querySelectorAll('.quiz-option').forEach(item => {
+                item.addEventListener('click', event => {
+                    const parent = item.parentElement;
+                    parent.querySelectorAll('.quiz-option').forEach(label => label.classList.remove('selected'));
+                    item.classList.add('selected');
+                });
+            });
+        }
+
+        submitQuizBtn.addEventListener('click', () => {
+            let score = 0;
+            quizData.forEach((item, index) => {
+                const questionOptions = document.querySelectorAll(`#q${index} .quiz-option`);
+                const selectedOptionInput = document.querySelector(`input[name="question${index}"]:checked`);
+                
+                questionOptions.forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    const input = label.querySelector('input');
+                    if (input.value === item.answer) {
+                        label.classList.add('correct');
+                    }
+                });
+
+                if (selectedOptionInput) {
+                    if (selectedOptionInput.value === item.answer) {
+                        score++;
+                    } else {
+                        selectedOptionInput.parentElement.classList.add('incorrect');
+                    }
+                }
+            });
+            quizResult.textContent = `Skor Anda: ${score} dari ${quizData.length}`;
+            Tone.start();
+            if (score === quizData.length) {
+                synth.triggerAttackRelease('G5', '8n');
+            } else {
+                synth.triggerAttackRelease('C3', '8n');
+            }
+        });
+
+        // Initialize
+        loadQuiz();
+    </script>
+
+</body>
+</html>
+
