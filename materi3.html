@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misi 3: Teknologi Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #020024 0%, #090979 35%, #00d4ff 100%);
+            overflow-x: hidden;
+            color: #e0f2fe;
+        }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .glass-card {
+            background: rgba(2, 0, 36, 0.3);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+        .nav-button {
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid rgba(0, 212, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        .nav-button:hover {
+            background: rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .back-button {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: 50;
+        }
+        .quiz-option {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+        .quiz-option:hover {
+            background-color: rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.8);
+        }
+        .quiz-option.selected {
+            background-color: rgba(0, 212, 255, 0.3);
+            border-color: #00d4ff;
+        }
+        .quiz-option.correct {
+            background-color: rgba(22, 163, 74, 0.5);
+            border-color: #16a34a;
+        }
+        .quiz-option.incorrect {
+            background-color: rgba(220, 38, 38, 0.5);
+            border-color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="min-h-screen p-4 sm:p-8">
+
+        <!-- ===== HALAMAN UTAMA (HOME) ===== -->
+        <section id="homeSection" class="min-h-screen flex flex-col items-center justify-center text-center">
+            <div class="glass-card max-w-4xl w-full">
+                <h1 class="font-cinzel text-4xl md:text-6xl font-bold" style="text-shadow: 0 0 15px rgba(0, 212, 255, 0.8);">Misi 3: Teknologi Digital</h1>
+                <p class="mt-4 mb-8 max-w-2xl mx-auto text-gray-300">Selamat datang di era digital! Misi kali ini akan membawamu menjelajahi dunia teknologi untuk menguasai bahasa Arab dengan cara yang lebih modern, interaktif, dan efisien.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <button onclick="showSection('materi1Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-lightbulb text-3xl mb-2"></i><br>Konsep Dasar
+                    </button>
+                    <button onclick="showSection('materi2Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-cogs text-3xl mb-2"></i><br>Jenis & Aplikasi
+                    </button>
+                    <button onclick="showSection('materi3Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-map-signs text-3xl mb-2"></i><br>Tantangan & Solusi
+                    </button>
+                    <button onclick="showSection('quizSection')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-question-circle text-3xl mb-2"></i><br>Uji Pengetahuan
+                    </button>
+                </div>
+                <a href="index.html" class="inline-block mt-8 text-cyan-300 hover:text-white transition">
+                    <i class="fas fa-arrow-left mr-2"></i>Kembali ke Peta Misi
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 1 ===== -->
+        <section id="materi1Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-3 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">1. Konsep Dasar & Manfaat</h3>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Peran Teknologi Digital</h4>
+                        <p>Teknologi digital telah mengubah cara belajar, termasuk dalam pembelajaran bahasa Arab.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">B. Definisi Teknologi Digital</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li><b>Duffy & Jonassen (1992):</b> Lingkungan yang mendukung pembelajaran aktif, interaksi, dan kolaborasi.</li>
+                            <li><b>Bates (2015):</b> Semua jenis alat digital untuk mendukung pembelajaran (internet, multimedia, aplikasi).</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">C. Manfaat Teknologi Digital</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li><b>Aksesibilitas:</b> Belajar kapan saja dan di mana saja.</li>
+                            <li><b>Interaktivitas:</b> Meningkatkan keterlibatan mahasiswa.</li>
+                            <li><b>Efisiensi:</b> Membuat proses belajar lebih cepat dan mudah.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 2 ===== -->
+        <section id="materi2Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-3 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">2. Jenis & Aplikasi Praktis</h3>
+                     <div>
+                       <h4 class="font-semibold text-cyan-400 text-lg">A. Jenis-Jenis Teknologi</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li><b>Platform Pembelajaran:</b> Moodle, Google Classroom.</li>
+                            <li><b>Aplikasi Bahasa:</b> Duolingo, Rosetta Stone.</li>
+                            <li><b>Sumber Daya Multimedia:</b> Video, podcast, audio.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">B. Aplikasi Keterampilan Bahasa</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li><b>Mufrodat:</b> Anki (Flashcard).</li>
+                            <li><b>Qowaid:</b> Platform interaktif.</li>
+                            <li><b>Istima’:</b> Podcast dan video.</li>
+                            <li><b>Kalam:</b> HelloTalk (percakapan).</li>
+                            <li><b>Qiro’ah:</b> E-book dan situs web.</li>
+                            <li><b>Kitabah:</b> Google Docs.</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">C. Penerapan di Kelas</h4>
+                         <ul class="list-disc list-inside ml-4">
+                           <li><b>Presentasi Interaktif:</b> Proyektor, slide.</li>
+                           <li><b>Alat Digital:</b> Tablet, laptop, smartphone.</li>
+                           <li><b>Diskusi Online:</b> Forum atau platform diskusi.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 3 ===== -->
+        <section id="materi3Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-3 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">3. Tantangan & Masa Depan</h3>
+                     <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Tantangan Penggunaan</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li><b>Kendala Akses:</b> Fasilitas digital yang belum merata.</li>
+                            <li><b>Keterampilan Digital:</b> Perlunya pelatihan teknologi.</li>
+                        </ul>
+                    </div>
+                    <div>
+                       <h4 class="font-semibold text-cyan-400 text-lg">B. Solusi Mengatasi Tantangan</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li><b>Pelatihan Mahasiswa:</b> Workshop & seminar literasi digital.</li>
+                            <li><b>Dukungan Institusi:</b> Penyediaan perangkat & sumber belajar.</li>
+                            <li><b>Kerjasama:</b> Sinergi antara pengajar dan institusi.</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">C. Arah Masa Depan</h4>
+                        <p>Teknologi akan terus berinovasi untuk mencapai pembelajaran yang lebih efektif dan efisien.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN QUIZ ===== -->
+        <section id="quizSection" class="hidden relative min-h-screen flex flex-col items-center justify-center">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-center mb-8">Arena Ujian Digital</h2>
+                <div id="quizContainer" class="space-y-6"></div>
+                <div class="text-center mt-8">
+                    <button id="submitQuizBtn" class="nav-button py-3 px-8 rounded-lg font-bold text-lg">Cek Jawaban</button>
+                    <p id="quizResult" class="mt-4 text-xl font-bold"></p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const synth = new Tone.Synth().toDestination();
+
+        function showSection(sectionId) {
+            Tone.start();
+            synth.triggerAttackRelease('C4', '8n');
+            sections.forEach(section => {
+                section.classList.toggle('hidden', section.id !== sectionId);
+            });
+            window.scrollTo(0, 0);
+        }
+
+        const quizData = [
+            // Mengetahui
+            { question: "Menurut Bates (2015), definisi teknologi digital dalam pendidikan mencakup...", options: ["Hanya internet dan multimedia", "Hanya aplikasi pembelajaran mobile", "Semua jenis alat digital yang dapat mendukung pembelajaran", "Hanya platform seperti Moodle"], answer: "Semua jenis alat digital yang dapat mendukung pembelajaran" },
+            { question: "Aplikasi seperti 'Anki' secara spesifik dirancang untuk membantu meningkatkan keterampilan...", options: ["Kalam (Berbicara)", "Istima' (Pendengaran)", "Kitabah (Menulis)", "Mufrodat (Kosakata)"], answer: "Mufrodat (Kosakata)" },
+            // Memahami
+            { question: "Manakah manfaat utama teknologi digital yang memungkinkan mahasiswa belajar di mana saja dan kapan saja?", options: ["Interaktivitas", "Efisiensi", "Aksesibilitas", "Kolaborasi"], answer: "Aksesibilitas" },
+            { question: "Mengapa podcast dianggap sebagai alat yang efektif untuk melatih 'Istima' (Pendengaran)?", options: ["Karena memiliki gambar dan teks", "Karena melatih pendengaran terhadap penutur asli dalam konteks alami", "Karena bisa digunakan untuk menulis esai", "Karena merupakan platform diskusi online"], answer: "Karena melatih pendengaran terhadap penutur asli dalam konteks alami" },
+            // Menerapkan
+            { question: "Seorang guru ingin mahasiswanya berlatih menulis karangan bahasa Arab dan mendapatkan umpan balik langsung dari teman sekelas. Alat digital manakah yang paling sesuai?", options: ["Duolingo", "Podcast", "Google Docs", "Anki"], answer: "Google Docs" },
+            { question: "Untuk meningkatkan keterampilan 'Kalam' (Berbicara) dengan penutur asli, aplikasi manakah yang paling relevan dari pilihan berikut?", options: ["Rosetta Stone", "HelloTalk", "Google Classroom", "Moodle"], answer: "HelloTalk" },
+            // Menganalisis
+            { question: "Jika sebuah sekolah memiliki akses internet yang terbatas tetapi ingin meningkatkan interaktivitas, strategi manakah yang paling mungkin berhasil?", options: ["Mewajibkan semua siswa streaming video di rumah", "Fokus pada aplikasi offline seperti flashcard dan penggunaan proyektor untuk presentasi interaktif di kelas", "Mengadakan kelas sepenuhnya online", "Mengabaikan teknologi dan kembali ke metode tradisional saja"], answer: "Fokus pada aplikasi offline seperti flashcard dan penggunaan proyektor untuk presentasi interaktif di kelas" },
+            { question: "Tantangan utama yang menghubungkan 'kendala akses' dan 'keterampilan digital' adalah...", options: ["Semua siswa malas menggunakan teknologi", "Teknologi digital terlalu mahal untuk institusi", "Kesenjangan digital, di mana beberapa siswa tertinggal karena kurangnya akses dan pelatihan", "Kurikulum tidak mendukung penggunaan teknologi"], answer: "Kesenjangan digital, di mana beberapa siswa tertinggal karena kurangnya akses dan pelatihan" },
+            // Mengevaluasi
+            { question: "Berdasarkan materi, langkah pertama apa yang paling krusial bagi sebuah institusi sebelum mengadopsi teknologi pembelajaran secara luas?", options: ["Membeli perangkat paling canggih dan mahal", "Menyediakan pelatihan dan workshop untuk pengajar dan mahasiswa", "Langsung membuat semua materi menjadi online", "Bekerjasama dengan perusahaan teknologi besar"], answer: "Menyediakan pelatihan dan workshop untuk pengajar dan mahasiswa" },
+            { question: "Dalam situasi di mana dana sangat terbatas, manakah platform yang menawarkan efisiensi tertinggi karena dapat mengintegrasikan berbagai jenis materi (video, teks, tugas) secara gratis?", options: ["Aplikasi berbayar seperti Rosetta Stone", "Platform seperti Google Classroom", "Membeli banyak CD pembelajaran", "Berlangganan podcast premium"], answer: "Platform seperti Google Classroom" }
+        ];
+
+        const quizContainer = document.getElementById('quizContainer');
+        const submitQuizBtn = document.getElementById('submitQuizBtn');
+        const quizResult = document.getElementById('quizResult');
+
+        function loadQuiz() {
+            quizContainer.innerHTML = '';
+            quizData.forEach((item, index) => {
+                const questionEl = document.createElement('div');
+                questionEl.innerHTML = `<p class="font-semibold text-lg mb-3">${index + 1}. ${item.question}</p>`;
+                const optionsEl = document.createElement('div');
+                optionsEl.classList.add('space-y-2');
+                optionsEl.id = `q${index}`;
+                item.options.forEach(option => {
+                    optionsEl.innerHTML += `<label class="quiz-option block p-3 rounded-lg cursor-pointer"><input type="radio" name="question${index}" value="${option}" class="hidden"><span>${option}</span></label>`;
+                });
+                questionEl.appendChild(optionsEl);
+                quizContainer.appendChild(questionEl);
+            });
+            
+            document.querySelectorAll('.quiz-option').forEach(item => {
+                item.addEventListener('click', () => {
+                    item.parentElement.querySelectorAll('.quiz-option').forEach(label => label.classList.remove('selected'));
+                    item.classList.add('selected');
+                });
+            });
+        }
+
+        submitQuizBtn.addEventListener('click', () => {
+            let score = 0;
+            quizData.forEach((item, index) => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                document.querySelectorAll(`#q${index} .quiz-option`).forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    if (label.querySelector('input').value === item.answer) {
+                        label.classList.add('correct');
+                    }
+                });
+                if (selectedOption) {
+                    if (selectedOption.value === item.answer) {
+                        score++;
+                    } else {
+                        selectedOption.parentElement.classList.add('incorrect');
+                    }
+                }
+            });
+            quizResult.textContent = `Skor Anda: ${score} dari ${quizData.length}`;
+            Tone.start();
+            synth.triggerAttackRelease(score === quizData.length ? 'G5' : 'C3', '8n');
+        });
+
+        loadQuiz();
+    </script>
+
+</body>
+</html>
+
+
