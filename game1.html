@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petualangan Arkade Bahasa Arab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+        .font-game {
+            font-family: 'Press Start 2P', cursive;
+        }
+        .gradient-bg {
+            background: linear-gradient(to bottom, #87CEEB 0%, #B0E0E6 100%);
+        }
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: scale(0.9);
+            opacity: 0;
+            animation: fadeInScale 0.3s ease-out forwards;
+        }
+        @keyframes fadeInScale {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        .btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .btn-option {
+            background-color: #f3f4f6;
+            border: 2px solid #e5e7eb;
+            color: #374151;
+        }
+        .btn-option:hover {
+            background-color: #e5e7eb;
+            border-color: #d1d5db;
+        }
+        #controls-container {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 20;
+            pointer-events: none; /* Allow clicks to pass through container */
+        }
+        .control-btn {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+            user-select: none;
+            pointer-events: auto; /* Enable clicks on buttons */
+        }
+        .control-btn:active {
+            background-color: rgba(255, 255, 255, 0.8);
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body class="gradient-bg flex items-center justify-center h-screen">
+
+    <div id="game-wrapper" class="w-full h-full relative">
+        <!-- Layar Awal -->
+        <div id="start-screen" class="modal-backdrop">
+            <div class="modal-content text-center">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 font-game">Petualangan Arkade<br>Bahasa Arab</h1>
+                <p class="text-gray-600 mb-6 md:text-lg">Bantu siswa ini menyelesaikan petualangannya! Kumpulkan buku untuk menambah skor. Gunakan tombol di layar atau keyboard (◄ ► untuk bergerak, Spasi untuk melompat). Jawab pertanyaan di setiap gerbang untuk lanjut!</p>
+                <button id="start-btn" class="btn bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg">Mulai Main</button>
+            </div>
+        </div>
+
+        <!-- UI Dalam Game -->
+        <div id="game-ui" class="absolute top-0 left-0 w-full p-4 z-10 hidden">
+            <div class="flex justify-between items-center text-white text-lg font-game">
+                <p>SKOR: <span id="score">0</span></p>
+                <p>NYAWA: <span id="lives">❤️❤️❤️</span></p>
+            </div>
+        </div>
+        
+        <!-- Canvas Game -->
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- Tombol Kontrol di Layar -->
+        <div id="controls-container" class="hidden">
+            <div class="flex gap-4">
+                <button id="left-btn" class="control-btn">◄</button>
+                <button id="right-btn" class="control-btn">►</button>
+            </div>
+            <button id="jump-btn" class="control-btn">▲</button>
+        </div>
+
+        <!-- Modal Pertanyaan -->
+        <div id="question-modal" class="modal-backdrop hidden">
+            <div class="modal-content">
+                <h2 id="question-text" class="text-xl md:text-2xl font-semibold text-gray-800 text-center mb-8"></h2>
+                <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Opsi Jawaban -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Layar Akhir -->
+        <div id="end-screen" class="modal-backdrop hidden">
+             <div class="modal-content text-center">
+                <h1 id="end-title" class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 font-game"></h1>
+                <p class="text-gray-600 mb-4 md:text-lg">Skor Akhir Kamu:</p>
+                <p id="final-score" class="text-6xl font-bold text-indigo-600 mb-6 font-game"></p>
+                <button id="restart-btn" class="btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg">Main Lagi</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    window.onload = function() {
+        // --- Elemen DOM ---
+        const startScreen = document.getElementById('start-screen');
+        const gameUI = document.getElementById('game-ui');
+        const endScreen = document.getElementById('end-screen');
+        const startBtn = document.getElementById('start-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const questionModal = document.getElementById('question-modal');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const scoreEl = document.getElementById('score');
+        const livesEl = document.getElementById('lives');
+        const finalScoreEl = document.getElementById('final-score');
+        const endTitle = document.getElementById('end-title');
+
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // --- Variabel Game ---
+        let player, platforms, gates, collectibles, keys, gravity, score, lives, gameActive, currentGate;
+        let cameraX = 0;
+        const worldWidth = 4000;
+
+        const questions = [
+            { question: "Platform apa yang terbukti efektif meningkatkan pengucapan, kosakata, dan motivasi siswa?", options: ["Twitter (X)", "TikTok", "Blog", "Podcast"], answer: "TikTok" },
+            { question: "Mendengar khutbah atau dialog di YouTube melatih keterampilan...", options: ["Kalam (Berbicara)", "Qira’ah (Membaca)", "Istima’ (Mendengar)", "Kitabah (Menulis)"], answer: "Istima’ (Mendengar)" },
+            { question: "Apa tantangan utama bagi guru dalam pembelajaran via media sosial?", options: ["Siswa terlalu aktif", "Kebutuhan pelatihan teknologi", "Biaya internet mahal", "Terlalu banyak platform"], answer: "Kebutuhan pelatihan teknologi" },
+            { question: "Menulis caption harian di Instagram mengasah keterampilan...", options: ["Kitabah (Menulis)", "Istima’ (Mendengar)", "Kalam (Berbicara)", "Qira’ah (Membaca)"], answer: "Kitabah (Menulis)" },
+            { question: "Manfaat media sosial yang mendukung 'self-directed learning' adalah...", options: ["Banyak teman", "Akses kapan & di mana saja", "Tampilan menarik", "Konten baru"], answer: "Akses kapan & di mana saja" }
+        ];
+
+        // --- Kelas & Objek Game ---
+        class Player {
+            constructor() {
+                this.width = 40;
+                this.height = 60;
+                this.x = 100;
+                this.y = canvas.height - 200;
+                this.velocityX = 0;
+                this.velocityY = 0;
+                this.speed = 7;
+                this.jumpPower = 18;
+                this.onGround = false;
+            }
+
+            draw() {
+                // Body
+                ctx.fillStyle = '#4f46e5';
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+                // Head
+                ctx.fillStyle = '#fde68a';
+                ctx.fillRect(this.x + 5, this.y - 20, this.width - 10, 20);
+            }
+
+            update() {
+                // Gerakan horizontal
+                if (keys.ArrowRight && this.x < worldWidth - this.width) {
+                    this.velocityX = this.speed;
+                } else if (keys.ArrowLeft && this.x > 0) {
+                    this.velocityX = -this.speed;
+                } else {
+                    this.velocityX = 0;
+                }
+                
+                // Melompat
+                if ((keys.ArrowUp || keys.Space) && this.onGround) {
+                    this.velocityY = -this.jumpPower;
+                    this.onGround = false;
+                }
+
+                this.x += this.velocityX;
+                this.y += this.velocityY;
+
+                // Gravitasi
+                if (this.y + this.height < canvas.height - 50) {
+                    this.velocityY += gravity;
+                    this.onGround = false;
+                } else {
+                    this.velocityY = 0;
+                    this.y = canvas.height - 50 - this.height;
+                    this.onGround = true;
+                }
+            }
+        }
+
+        class Platform {
+            constructor(x, y, width, height) {
+                this.x = x;
+                this.y = y;
+                this.width = width;
+                this.height = height;
+            }
+
+            draw() {
+                ctx.fillStyle = '#A0522D';
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+                 ctx.strokeStyle = '#69340f';
+                 ctx.lineWidth = 4;
+                 ctx.strokeRect(this.x, this.y, this.width, this.height);
+            }
+        }
+
+        class Gate {
+            constructor(x, y, questionIndex) {
+                this.x = x;
+                this.y = y;
+                this.width = 20;
+                this.height = 120;
+                this.questionIndex = questionIndex;
+                this.active = true;
+            }
+
+            draw() {
+                if (!this.active) return;
+                ctx.fillStyle = 'gold';
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+                ctx.fillStyle = 'orange';
+                for(let i = 0; i < this.height; i += 20) {
+                    ctx.fillRect(this.x, this.y + i, this.width, 10);
+                }
+            }
+        }
+
+        class Collectible {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.width = 30;
+                this.height = 40;
+                this.active = true;
+            }
+
+            draw() {
+                if (!this.active) return;
+                // Draw a simple book
+                ctx.fillStyle = '#4A90E2'; // Blue cover
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+                ctx.fillStyle = 'white'; // Pages
+                ctx.fillRect(this.x + 5, this.y + 5, this.width - 10, this.height - 10);
+            }
+        }
+
+        // --- Fungsi Game ---
+        function init() {
+            gameActive = true;
+            score = 0;
+            lives = 3;
+            gravity = 0.8;
+            cameraX = 0;
+
+            player = new Player();
+            keys = { ArrowRight: false, ArrowLeft: false, ArrowUp: false, Space: false };
+
+            platforms = [
+                new Platform(400, canvas.height - 200, 200, 40),
+                new Platform(700, canvas.height - 350, 250, 40),
+                new Platform(1200, canvas.height - 250, 200, 40),
+                new Platform(1500, canvas.height - 400, 200, 40),
+                new Platform(2000, canvas.height - 200, 300, 40),
+                new Platform(2500, canvas.height - 350, 200, 40),
+                new Platform(2800, canvas.height - 500, 250, 40),
+                new Platform(3400, canvas.height - 250, 200, 40)
+            ];
+
+            gates = [
+                new Gate(600, canvas.height - 170, 0),
+                new Gate(1400, canvas.height - 170, 1),
+                new Gate(1900, canvas.height - 170, 2),
+                new Gate(2700, canvas.height - 170, 3),
+                new Gate(3200, canvas.height - 170, 4)
+            ];
+
+            collectibles = [
+                new Collectible(300, canvas.height - 100),
+                new Collectible(750, canvas.height - 400),
+                new Collectible(1250, canvas.height - 300),
+                new Collectible(1700, canvas.height - 100),
+                new Collectible(2100, canvas.height - 250),
+                new Collectible(2850, canvas.height - 550),
+                new Collectible(3500, canvas.height - 300),
+            ];
+
+            updateUI();
+            animate();
+        }
+        function animate() {
+            if (!gameActive) return;
+            requestAnimationFrame(animate);
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Camera follow player
+            cameraX = player.x - canvas.width / 4;
+            if (cameraX < 0) cameraX = 0;
+            if (cameraX > worldWidth - canvas.width) cameraX = worldWidth - canvas.width;
+            
+            ctx.save();
+            ctx.translate(-cameraX, 0);
+            
+            // Draw ground
+            ctx.fillStyle = '#228B22';
+            ctx.fillRect(0, canvas.height - 50, worldWidth, 50);
+
+            // Draw finish line
+            ctx.fillStyle = 'white';
+            ctx.fillRect(worldWidth - 50, 0, 10, canvas.height-50);
+
+
+            platforms.forEach(p => p.draw());
+            gates.forEach(g => g.draw());
+            collectibles.forEach(c => c.draw());
+            player.draw();
+            player.update();
+            checkCollisions();
+            
+            ctx.restore();
+        }
+        
+        function checkCollisions() {
+            // Platform collision
+            let onAnyPlatform = false;
+            platforms.forEach(p => {
+                if (player.x < p.x + p.width &&
+                    player.x + player.width > p.x &&
+                    player.y + player.height > p.y &&
+                    player.y + player.height < p.y + p.height &&
+                    player.velocityY >= 0
+                    ) {
+                    player.y = p.y - player.height;
+                    player.velocityY = 0;
+                    player.onGround = true;
+                    onAnyPlatform = true;
+                }
+            });
+            if (!onAnyPlatform && player.y + player.height < canvas.height - 50) {
+                 player.onGround = false;
+            }
+
+            // Gate collision
+            gates.forEach(g => {
+                if (g.active &&
+                    player.x < g.x + g.width &&
+                    player.x + player.width > g.x &&
+                    player.y < g.y + g.height &&
+                    player.y + player.height > g.y
+                ) {
+                    gameActive = false;
+                    currentGate = g;
+                    showQuestion(g.questionIndex);
+                }
+            });
+
+            // Collectible collision
+            collectibles.forEach(c => {
+                if (c.active &&
+                    player.x < c.x + c.width &&
+                    player.x + player.width > c.x &&
+                    player.y < c.y + c.height &&
+                    player.y + player.height > c.y
+                ) {
+                    c.active = false;
+                    score += 50;
+                    updateUI();
+                }
+            });
+
+            // Finish line
+            if (player.x + player.width >= worldWidth - 50) {
+                endGame(true);
+            }
+        }
+
+        function showQuestion(index) {
+            const q = questions[index];
+            questionText.textContent = q.question;
+            optionsContainer.innerHTML = '';
+            
+            q.options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.classList.add('btn', 'btn-option', 'w-full', 'text-left', 'p-4', 'rounded-xl', 'font-semibold');
+                button.onclick = () => handleAnswer(option === q.answer);
+                optionsContainer.appendChild(button);
+            });
+
+            questionModal.classList.remove('hidden');
+        }
+
+        function handleAnswer(isCorrect) {
+            questionModal.classList.add('hidden');
+            if (isCorrect) {
+                score += 100;
+                currentGate.active = false;
+            } else {
+                lives--;
+                if (lives <= 0) {
+                    endGame(false);
+                    return;
+                }
+            }
+            updateUI();
+            gameActive = true;
+            animate();
+        }
+        
+        function updateUI() {
+            scoreEl.textContent = score;
+            livesEl.innerHTML = '❤️'.repeat(lives);
+        }
+
+        function endGame(isWin) {
+             gameActive = false;
+             if(isWin) {
+                endTitle.textContent = "SELAMAT!";
+                score += lives * 50; // Bonus nyawa
+             } else {
+                endTitle.textContent = "GAME OVER";
+             }
+             finalScoreEl.textContent = score;
+             endScreen.classList.remove('hidden');
+        }
+
+        // --- Event Listeners ---
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'ArrowRight') keys.ArrowRight = true;
+            if (e.code === 'ArrowLeft') keys.ArrowLeft = true;
+            if (e.code === 'ArrowUp') keys.ArrowUp = true;
+            if (e.code === 'Space') {
+                keys.Space = true;
+                e.preventDefault();
+            }
+        });
+        window.addEventListener('keyup', (e) => {
+            if (e.code === 'ArrowRight') keys.ArrowRight = false;
+            if (e.code === 'ArrowLeft') keys.ArrowLeft = false;
+            if (e.code === 'ArrowUp') keys.ArrowUp = false;
+            if (e.code === 'Space') keys.Space = false;
+        });
+        window.addEventListener('resize', () => {
+             canvas.width = window.innerWidth;
+             canvas.height = window.innerHeight;
+        });
+
+        startBtn.addEventListener('click', () => {
+            startScreen.classList.add('hidden');
+            gameUI.classList.remove('hidden');
+            document.getElementById('controls-container').classList.remove('hidden');
+            init();
+        });
+
+        restartBtn.addEventListener('click', () => {
+            endScreen.classList.add('hidden');
+            gameUI.classList.remove('hidden');
+            document.getElementById('controls-container').classList.remove('hidden');
+            init();
+        });
+
+        // On-screen controls listeners
+        const leftBtn = document.getElementById('left-btn');
+        const rightBtn = document.getElementById('right-btn');
+        const jumpBtn = document.getElementById('jump-btn');
+
+        const handleMoveStart = (direction) => {
+            if (direction === 'left') keys.ArrowLeft = true;
+            if (direction === 'right') keys.ArrowRight = true;
+        };
+
+        const handleMoveEnd = (direction) => {
+            if (direction === 'left') keys.ArrowLeft = false;
+            if (direction === 'right') keys.ArrowRight = false;
+        };
+
+        const handleJumpStart = () => {
+            keys.Space = true;
+        };
+
+        const handleJumpEnd = () => {
+            keys.Space = false;
+        };
+
+        leftBtn.addEventListener('mousedown', () => handleMoveStart('left'));
+        leftBtn.addEventListener('mouseup', () => handleMoveEnd('left'));
+        leftBtn.addEventListener('mouseleave', () => handleMoveEnd('left'));
+        leftBtn.addEventListener('touchstart', (e) => { e.preventDefault(); handleMoveStart('left'); });
+        leftBtn.addEventListener('touchend', (e) => { e.preventDefault(); handleMoveEnd('left'); });
+
+        rightBtn.addEventListener('mousedown', () => handleMoveStart('right'));
+        rightBtn.addEventListener('mouseup', () => handleMoveEnd('right'));
+        rightBtn.addEventListener('mouseleave', () => handleMoveEnd('right'));
+        rightBtn.addEventListener('touchstart', (e) => { e.preventDefault(); handleMoveStart('right'); });
+        rightBtn.addEventListener('touchend', (e) => { e.preventDefault(); handleMoveEnd('right'); });
+
+        jumpBtn.addEventListener('mousedown', handleJumpStart);
+        jumpBtn.addEventListener('mouseup', handleJumpEnd);
+        jumpBtn.addEventListener('mouseleave', handleJumpEnd);
+        jumpBtn.addEventListener('touchstart', (e) => { e.preventDefault(); handleJumpStart(); });
+        jumpBtn.addEventListener('touchend', (e) => { e.preventDefault(); handleJumpEnd(); });
+
+    };
+    </script>
+</body>
+</html>
+

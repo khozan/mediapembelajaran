@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misi 4: Media Sosial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #020024 0%, #090979 35%, #00d4ff 100%);
+            overflow-x: hidden;
+            color: #e0f2fe;
+        }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .glass-card {
+            background: rgba(2, 0, 36, 0.3);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+        .nav-button {
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid rgba(0, 212, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        .nav-button:hover {
+            background: rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .back-button {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: 50;
+        }
+        .quiz-option {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+        .quiz-option:hover {
+            background-color: rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.8);
+        }
+        .quiz-option.selected {
+            background-color: rgba(0, 212, 255, 0.3);
+            border-color: #00d4ff;
+        }
+        .quiz-option.correct {
+            background-color: rgba(22, 163, 74, 0.5);
+            border-color: #16a34a;
+        }
+        .quiz-option.incorrect {
+            background-color: rgba(220, 38, 38, 0.5);
+            border-color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="min-h-screen p-4 sm:p-8">
+
+        <!-- ===== HALAMAN UTAMA (HOME) ===== -->
+        <section id="homeSection" class="min-h-screen flex flex-col items-center justify-center text-center">
+            <div class="glass-card max-w-4xl w-full">
+                <h1 class="font-cinzel text-4xl md:text-6xl font-bold" style="text-shadow: 0 0 15px rgba(0, 212, 255, 0.8);">Misi 4: Media Sosial</h1>
+                <p class="mt-4 mb-8 max-w-2xl mx-auto text-gray-300">Jelajahi kekuatan media sosial! Dalam misi ini, kita akan mengungkap bagaimana platform seperti TikTok, YouTube, dan Instagram dapat menjadi arena baru untuk menguasai bahasa Arab.</p>
+                <div class="flex flex-wrap justify-center items-center gap-4">
+                    <button onclick="showSection('materi1Section')" class="nav-button p-4 rounded-lg font-semibold w-36">
+                        <i class="fas fa-globe-asia text-3xl mb-2"></i><br>Dasar & Manfaat
+                    </button>
+                    <button onclick="showSection('materi2Section')" class="nav-button p-4 rounded-lg font-semibold w-36">
+                        <i class="fas fa-comments text-3xl mb-2"></i><br>Strategi & Platform
+                    </button>
+                    <button onclick="showSection('materi3Section')" class="nav-button p-4 rounded-lg font-semibold w-36">
+                        <i class="fas fa-shield-alt text-3xl mb-2"></i><br>Tantangan & Etika
+                    </button>
+                    <button onclick="showSection('quizSection')" class="nav-button p-4 rounded-lg font-semibold w-36">
+                        <i class="fas fa-question-circle text-3xl mb-2"></i><br>Uji Pengetahuan
+                    </button>
+                     <a href="game1.html" class="nav-button p-4 rounded-lg font-semibold w-36 text-center">
+                        <i class="fas fa-gamepad text-3xl mb-2"></i><br>Game/Bermain
+                    </a>
+                </div>
+                <a href="#" class="inline-block mt-8 text-cyan-300 hover:text-white transition">
+                    <i class="fas fa-arrow-left mr-2"></i>Kembali ke Peta Misi
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 1 ===== -->
+        <section id="materi1Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">1. Pendahuluan & Manfaat</h3>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Pendahuluan</h4>
+                        <p>Media sosial (Web 2.0) telah menjadi sarana pembelajaran bahasa Arab yang interaktif, fleksibel, dan berpusat pada siswa. Platform seperti TikTok, YouTube, dan Instagram mendukung semua keterampilan berbahasa dan terbukti meningkatkan motivasi serta pembelajaran mandiri.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">B. Manfaat Penggunaan Media Sosial</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-2">
+                            <li><b>Meningkatkan Motivasi:</b> TikTok terbukti membuat siswa lebih termotivasi. Siswa Arab juga menunjukkan sikap positif terhadap penggunaan Facebook, Instagram, dan Snapchat.</li>
+                            <li><b>Mendukung Pembelajaran Mandiri:</b> Memberi akses belajar kapan saja dan di mana saja (self-directed learning), namun lebih efektif jika dikombinasikan dengan tatap muka (blended learning).</li>
+                            <li><b>Interaksi Sosial & Kontekstual:</b> Memfasilitasi interaksi dengan penutur asli dan penggunaan bahasa dalam konteks nyata, serta dapat mengurangi prasangka budaya.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 2 ===== -->
+        <section id="materi2Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-4xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-3 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">2. Strategi Pembelajaran Berbasis Media Sosial</h3>
+                     <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead class="bg-cyan-900/50">
+                                <tr>
+                                    <th class="p-3">Keterampilan</th>
+                                    <th class="p-3">Platform</th>
+                                    <th class="p-3">Contoh Aktivitas</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-cyan-500/30">
+                                <tr class="hover:bg-cyan-900/30">
+                                    <td class="p-3 font-semibold">Maharah Istima’ (Mendengar)</td>
+                                    <td class="p-3">YouTube, Podcast, Telegram</td>
+                                    <td class="p-3">Mendengar khutbah, dialog otentik, berita Arab.</td>
+                                </tr>
+                                <tr class="hover:bg-cyan-900/30">
+                                    <td class="p-3 font-semibold">Maharah Kalam (Berbicara)</td>
+                                    <td class="p-3">WhatsApp, TikTok, Instagram</td>
+                                    <td class="p-3">Diskusi daring, video role play percakapan.</td>
+                                </tr>
+                                <tr class="hover:bg-cyan-900/30">
+                                    <td class="p-3 font-semibold">Maharah Qira’ah (Membaca)</td>
+                                    <td class="p-3">Facebook, Blog, Instagram</td>
+                                    <td class="p-3">Membaca artikel pendek, kutipan Arab, berita daring.</td>
+                                </tr>
+                                <tr class="hover:bg-cyan-900/30">
+                                    <td class="p-3 font-semibold">Maharah Kitabah (Menulis)</td>
+                                    <td class="p-3">Twitter (X), Instagram</td>
+                                    <td class="p-3">Menulis caption harian, ringkasan bacaan, kuis teks Arab.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 3 ===== -->
+        <section id="materi3Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">3. Tantangan, Etika & Kesimpulan</h3>
+                     <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Tantangan Penggunaan</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li><b>Kebutuhan Pelatihan Teknologi:</b> Guru memerlukan pelatihan untuk memaksimalkan pembelajaran.</li>
+                            <li><b>Kendala Bahasa & Terjemahan:</b> Campuran dialek, Arab Standar, dan Inggris bisa menyulitkan.</li>
+                             <li><b>Analisis Data:</b> Volume besar teks Arab di media sosial memerlukan metode analisis otomatis.</li>
+                        </ul>
+                    </div>
+                    <div>
+                       <h4 class="font-semibold text-cyan-400 text-lg">B. Etika dan Literasi Digital</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Menghormati privasi pengguna.</li>
+                            <li>Menghindari penyebaran informasi palsu (hoax).</li>
+                            <li>Menggunakan bahasa yang santun dan sesuai konteks akademik.</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">C. Kesimpulan</h4>
+                        <p>Media sosial membawa manfaat besar, namun tantangan literasi digital, pelatihan guru, dan kendala bahasa perlu diatasi. Kombinasi dengan tatap muka (blended learning) akan membuat pembelajaran lebih efektif dan relevan.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN QUIZ ===== -->
+        <section id="quizSection" class="hidden relative min-h-screen flex flex-col items-center justify-center">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-center mb-8">Arena Ujian Sosial</h2>
+                <div id="quizContainer" class="space-y-6"></div>
+                <div class="text-center mt-8">
+                    <button id="submitQuizBtn" class="nav-button py-3 px-8 rounded-lg font-bold text-lg">Cek Jawaban</button>
+                    <p id="quizResult" class="mt-4 text-xl font-bold"></p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const synth = new Tone.Synth().toDestination();
+
+        function showSection(sectionId) {
+            Tone.start();
+            synth.triggerAttackRelease('C4', '8n');
+            sections.forEach(section => {
+                section.classList.toggle('hidden', section.id !== sectionId);
+            });
+            window.scrollTo(0, 0);
+        }
+
+        const quizData = [
+            // Mengetahui
+            { question: "Platform media sosial apa yang terbukti meningkatkan pengucapan dan motivasi siswa menurut penelitian Antar & Elsayed (2025)?", options: ["Facebook", "WhatsApp", "TikTok", "Telegram"], answer: "TikTok" },
+            { question: "Aktivitas 'menulis caption harian' di Instagram dirancang untuk melatih keterampilan...", options: ["Maharah Istima'", "Maharah Kalam", "Maharah Qira’ah", "Maharah Kitabah"], answer: "Maharah Kitabah" },
+            // Memahami
+            { question: "Mengapa 'blended learning' disarankan sebagai kombinasi pembelajaran via media sosial?", options: ["Karena media sosial tidak efektif sama sekali", "Karena tatap muka lebih penting daripada online", "Agar pembelajaran daring lebih efektif dan terstruktur", "Karena siswa tidak punya akses internet"], answer: "Agar pembelajaran daring lebih efektif dan terstruktur" },
+            { question: "Apa tantangan utama yang disebabkan oleh campuran berbagai dialek Arab dan bahasa Inggris di media sosial?", options: ["Membuat media sosial lebih lambat", "Menyulitkan pengajaran bahasa Arab baku (Standar Modern)", "Meningkatkan biaya akses internet", "Membuat akun lebih sulit didaftarkan"], answer: "Menyulitkan pengajaran bahasa Arab baku (Standar Modern)" },
+            // Menerapkan
+            { question: "Seorang guru ingin siswanya berlatih Maharah Kalam secara interaktif. Aktivitas mana yang paling sesuai?", options: ["Membaca artikel berita di Facebook", "Mendengarkan podcast berita Arab", "Membuat grup diskusi di WhatsApp", "Menulis ringkasan di Twitter (X)"], answer: "Membuat grup diskusi di WhatsApp" },
+            { question: "Jika seorang siswa ingin meningkatkan Maharah Qira'ah secara mandiri, platform apa yang bisa ia gunakan?", options: ["TikTok untuk video pendek", "Podcast untuk audio", "Blog atau halaman Facebook berisi artikel Arab", "WhatsApp untuk voice note"], answer: "Blog atau halaman Facebook berisi artikel Arab" },
+            // Menganalisis
+            { question: "Kebutuhan akan pelatihan teknologi bagi guru menunjukkan bahwa...", options: ["Guru tidak mau menggunakan media sosial", "Media sosial adalah alat yang rumit dan butuh strategi khusus untuk efektif", "Siswa lebih pintar dari guru dalam teknologi", "Sekolah tidak mendukung penggunaan teknologi"], answer: "Media sosial adalah alat yang rumit dan butuh strategi khusus untuk efektif" },
+            { question: "Manfaat media sosial dalam memfasilitasi 'interaksi dengan penutur asli' secara langsung mengatasi kelemahan metode pembelajaran...", options: ["Yang terlalu fokus pada video", "Yang hanya berbasis buku teks dan teori", "Yang terlalu banyak tugas menulis", "Yang menggunakan game"], answer: "Yang hanya berbasis buku teks dan teori" },
+            // Mengevaluasi
+            { question: "Manakah prinsip etika yang paling penting saat menggunakan grup WhatsApp kelas untuk tugas?", options: ["Hanya mengirim pesan saat jam sekolah", "Menghormati privasi anggota grup dan tidak menyebar info pribadi", "Menggunakan emoji di setiap pesan", "Mengirim tugas selengkap mungkin"], answer: "Menghormati privasi anggota grup dan tidak menyebar info pribadi" },
+            { question: "Berdasarkan materi, apa kesimpulan paling tepat tentang peran media sosial dalam pendidikan bahasa Arab?", options: ["Media sosial akan sepenuhnya menggantikan peran guru.", "Media sosial adalah alat bantu yang kuat jika digunakan dengan strategi yang tepat dan mengatasi tantangannya.", "Media sosial hanya cocok untuk siswa tingkat lanjut.", "Penggunaan media sosial tidak memiliki tantangan berarti."], answer: "Media sosial adalah alat bantu yang kuat jika digunakan dengan strategi yang tepat dan mengatasi tantangannya." }
+        ];
+
+        const quizContainer = document.getElementById('quizContainer');
+        const submitQuizBtn = document.getElementById('submitQuizBtn');
+        const quizResult = document.getElementById('quizResult');
+
+        function loadQuiz() {
+            quizContainer.innerHTML = '';
+            quizData.forEach((item, index) => {
+                const questionEl = document.createElement('div');
+                questionEl.innerHTML = `<p class="font-semibold text-lg mb-3">${index + 1}. ${item.question}</p>`;
+                const optionsEl = document.createElement('div');
+                optionsEl.classList.add('space-y-2');
+                optionsEl.id = `q${index}`;
+                item.options.forEach(option => {
+                    optionsEl.innerHTML += `<label class="quiz-option block p-3 rounded-lg cursor-pointer"><input type="radio" name="question${index}" value="${option}" class="hidden"><span>${option}</span></label>`;
+                });
+                questionEl.appendChild(optionsEl);
+                quizContainer.appendChild(questionEl);
+            });
+            
+            document.querySelectorAll('.quiz-option').forEach(item => {
+                item.addEventListener('click', () => {
+                    item.parentElement.querySelectorAll('.quiz-option').forEach(label => label.classList.remove('selected'));
+                    item.classList.add('selected');
+                });
+            });
+        }
+
+        submitQuizBtn.addEventListener('click', () => {
+            let score = 0;
+            quizData.forEach((item, index) => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                document.querySelectorAll(`#q${index} .quiz-option`).forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    if (label.querySelector('input').value === item.answer) {
+                        label.classList.add('correct');
+                    }
+                });
+                if (selectedOption) {
+                    if (selectedOption.value === item.answer) {
+                        score++;
+                    } else {
+                        selectedOption.parentElement.classList.add('incorrect');
+                    }
+                }
+            });
+            quizResult.textContent = `Skor Anda: ${score} dari ${quizData.length}`;
+            Tone.start();
+            synth.triggerAttackRelease(score === quizData.length ? 'G5' : 'C3', '8n');
+        });
+
+        loadQuiz();
+    </script>
+
+</body>
+</html>
+
+
