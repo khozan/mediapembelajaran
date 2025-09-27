@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misi 5: Media Interaktif</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #020024 0%, #090979 35%, #00d4ff 100%);
+            overflow-x: hidden;
+            color: #e0f2fe;
+        }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .glass-card {
+            background: rgba(2, 0, 36, 0.3);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+        .nav-button {
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid rgba(0, 212, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        .nav-button:hover {
+            background: rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .back-button {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: 50;
+        }
+        .quiz-option {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+        .quiz-option:hover {
+            background-color: rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.8);
+        }
+        .quiz-option.selected {
+            background-color: rgba(0, 212, 255, 0.3);
+            border-color: #00d4ff;
+        }
+        .quiz-option.correct {
+            background-color: rgba(22, 163, 74, 0.5);
+            border-color: #16a34a;
+        }
+        .quiz-option.incorrect {
+            background-color: rgba(220, 38, 38, 0.5);
+            border-color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="min-h-screen p-4 sm:p-8">
+
+        <!-- ===== HALAMAN UTAMA (HOME) ===== -->
+        <section id="homeSection" class="min-h-screen flex flex-col items-center justify-center text-center">
+            <div class="glass-card max-w-4xl w-full">
+                <h1 class="font-cinzel text-4xl md:text-6xl font-bold" style="text-shadow: 0 0 15px rgba(0, 212, 255, 0.8);">Misi 5: Media Interaktif</h1>
+                <p class="mt-4 mb-8 max-w-2xl mx-auto text-gray-300">Saatnya menjadi kreator! Misi ini akan membekalimu dengan pengetahuan untuk merancang dan mengembangkan media pembelajaran bahasa Arab yang interaktif, menarik, dan efektif.</p>
+                <div class="flex flex-wrap justify-center items-center gap-4">
+                    <button onclick="showSection('materi1Section')" class="nav-button p-4 rounded-lg font-semibold w-36">
+                        <i class="fas fa-lightbulb text-3xl mb-2"></i><br>Konsep & Manfaat
+                    </button>
+                    <button onclick="showSection('materi2Section')" class="nav-button p-4 rounded-lg font-semibold w-36">
+                        <i class="fas fa-drafting-compass text-3xl mb-2"></i><br>Langkah & Platform
+                    </button>
+                    <button onclick="showSection('materi3Section')" class="nav-button p-4 rounded-lg font-semibold w-36">
+                        <i class="fas fa-cogs text-3xl mb-2"></i><br>Strategi & Tantangan
+                    </button>
+                    <button onclick="showSection('quizSection')" class="nav-button p-4 rounded-lg font-semibold w-36">
+                        <i class="fas fa-question-circle text-3xl mb-2"></i><br>Uji Pengetahuan
+                    </button>
+                     <a href="tutorial canva.html" class="nav-button p-4 rounded-lg font-semibold w-36 text-center">
+                        <i class="fas fa-video text-3xl mb-2"></i><br>Video Tutorial Canva
+                    </a>
+                </div>
+                <a href="index.html" class="inline-block mt-8 text-cyan-300 hover:text-white transition">
+                    <i class="fas fa-arrow-left mr-2"></i>Kembali ke Peta Misi
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 1 ===== -->
+        <section id="materi1Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">1. Konsep Dasar & Manfaat</h3>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Definisi & Prinsip Dasar</h4>
+                        <p>Media pembelajaran interaktif adalah media yang memungkinkan interaksi dua arah, dilengkapi feedback, navigasi mandiri, dan multimedia (teks, suara, gambar, video).</p>
+                        <ul class="list-disc list-inside ml-4 mt-2">
+                            <li><b>Interaktivitas:</b> Respon pengguna memengaruhi jalannya pembelajaran.</li>
+                            <li><b>Umpan Balik:</b> Pengguna mendapat tanggapan otomatis.</li>
+                            <li><b>Kebebasan Akses:</b> Pengguna mengontrol alur materi.</li>
+                            <li><b>Multisensori:</b> Menggabungkan banyak elemen media.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">B. Manfaat Media Interaktif</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li><b>Meningkatkan Motivasi:</b> Elemen visual dan gamifikasi membuat belajar lebih menyenangkan.</li>
+                            <li><b>Meningkatkan Pemahaman:</b> Kombinasi media memperkuat daya ingat.</li>
+                            <li><b>Mendukung Pembelajaran Mandiri:</b> Siswa belajar sesuai kecepatan sendiri.</li>
+                            <li><b>Menyediakan Umpan Balik Instan:</b> Hasil kuis bisa langsung diketahui.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 2 ===== -->
+        <section id="materi2Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-5xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-3 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">2. Langkah Pengembangan & Contoh Platform</h3>
+                     <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg mb-2">Model ADDIE</h4>
+                        <p>ADDIE (Analysis, Design, Development, Implementation, Evaluation) adalah model pengembangan yang terstruktur.</p>
+                        <ol class="list-decimal list-inside ml-4 mt-2">
+                           <li><b>Analysis:</b> Menganalisis kebutuhan siswa dan tujuan pembelajaran.</li>
+                           <li><b>Design:</b> Membuat storyboard dan rancangan tampilan.</li>
+                           <li><b>Development:</b> Menggunakan software untuk membuat media.</li>
+                           <li><b>Implementation:</b> Uji coba media dalam pembelajaran.</li>
+                           <li><b>Evaluation:</b> Melakukan evaluasi efektivitas media.</li>
+                        </ol>
+                     </div>
+                     <div class="overflow-x-auto mt-4">
+                        <table class="w-full text-left">
+                            <thead class="bg-cyan-900/50">
+                                <tr>
+                                    <th class="p-3">Platform</th>
+                                    <th class="p-3">Jenis Media</th>
+                                    <th class="p-3">Contoh Implementasi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-cyan-500/30">
+                                <tr class="hover:bg-cyan-900/30">
+                                    <td class="p-3 font-semibold">Canva</td>
+                                    <td class="p-3">Presentasi interaktif, kuis</td>
+                                    <td class="p-3">Kuis kosakata dengan hyperlink.</td>
+                                </tr>
+                                <tr class="hover:bg-cyan-900/30">
+                                    <td class="p-3 font-semibold">H5P</td>
+                                    <td class="p-3">Video interaktif, kuis</td>
+                                    <td class="p-3">Menyisipkan soal dalam video.</td>
+                                </tr>
+                                <tr class="hover:bg-cyan-900/30">
+                                    <td class="p-3 font-semibold">Kahoot / Quizizz</td>
+                                    <td class="p-3">Kuis berbasis game</td>
+                                    <td class="p-3">Kompetisi kosakata real-time.</td>
+                                </tr>
+                                 <tr class="hover:bg-cyan-900/30">
+                                    <td class="p-3 font-semibold">Genially</td>
+                                    <td class="p-3">Escape game, infografik</td>
+                                    <td class="p-3">Puzzle tata bahasa Arab.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 3 ===== -->
+        <section id="materi3Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">3. Strategi, Tantangan & Evaluasi</h3>
+                     <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Strategi Penggunaan</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li><b>Istima’:</b> Video interaktif dengan soal pemahaman.</li>
+                            <li><b>Kalam:</b> Role-play virtual menggunakan avatar.</li>
+                            <li><b>Qira’ah:</b> Teks interaktif dengan hyperlink kosakata.</li>
+                            <li><b>Kitabah:</b> Latihan isian dengan feedback otomatis.</li>
+                        </ul>
+                    </div>
+                    <div>
+                       <h4 class="font-semibold text-cyan-400 text-lg">B. Tantangan Pengembangan</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Keterbatasan kemampuan teknologi guru.</li>
+                            <li>Akses perangkat dan internet tidak merata.</li>
+                            <li>Waktu pengembangan yang cukup lama.</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">C. Evaluasi Media</h4>
+                         <p>Evaluasi mencakup 3 aspek utama: <b>Teknis</b> (tampilan, navigasi), <b>Pembelajaran</b> (relevansi, kejelasan), dan <b>Respon Siswa</b> (motivasi, hasil belajar).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN QUIZ ===== -->
+        <section id="quizSection" class="hidden relative min-h-screen flex flex-col items-center justify-center">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-center mb-8">Arena Ujian Interaktif</h2>
+                <div id="quizContainer" class="space-y-6"></div>
+                <div class="text-center mt-8">
+                    <button id="submitQuizBtn" class="nav-button py-3 px-8 rounded-lg font-bold text-lg">Cek Jawaban</button>
+                    <p id="quizResult" class="mt-4 text-xl font-bold"></p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const synth = new Tone.Synth().toDestination();
+
+        function showSection(sectionId) {
+            Tone.start();
+            synth.triggerAttackRelease('C4', '8n');
+            sections.forEach(section => {
+                section.classList.toggle('hidden', section.id !== sectionId);
+            });
+            window.scrollTo(0, 0);
+        }
+
+        const quizData = [
+            // Mengetahui
+            { question: "Berikut adalah platform yang cocok untuk membuat kuis berbasis game secara real-time, KECUALI...", options: ["Kahoot", "Quizizz", "Genially", "Articulate Storyline"], answer: "Articulate Storyline" },
+            { question: "Tahap pertama dalam model pengembangan ADDIE adalah...", options: ["Design", "Development", "Analysis", "Evaluation"], answer: "Analysis" },
+            // Memahami
+            { question: "Prinsip 'Umpan Balik' dalam media interaktif berarti...", options: ["Media dapat digunakan di banyak perangkat.", "Siswa bisa mengontrol kecepatan belajar.", "Siswa mendapatkan tanggapan otomatis dari media.", "Media menggabungkan teks, gambar, dan suara."], answer: "Siswa mendapatkan tanggapan otomatis dari media." },
+            { question: "Mengapa media interaktif dianggap dapat meningkatkan motivasi belajar?", options: ["Karena menggantikan peran guru sepenuhnya.", "Karena hanya fokus pada teks dan gambar.", "Karena elemen visual, audio, dan gamifikasi membuat belajar lebih menyenangkan.", "Karena membutuhkan koneksi internet yang cepat."], answer: "Karena elemen visual, audio, dan gamifikasi membuat belajar lebih menyenangkan." },
+            // Menerapkan
+            { question: "Seorang guru ingin membuat video percakapan bahasa Arab dan menyisipkan pertanyaan pemahaman di tengah-tengah video. Platform apa yang paling sesuai?", options: ["Canva", "H5P", "Google Forms", "Kahoot"], answer: "H5P" },
+            { question: "Untuk melatih Maharah Kitabah, seorang guru dapat membuat latihan isian kalimat dengan feedback otomatis menggunakan...", options: ["Genially", "Kahoot", "Google Forms", "Video Interaktif"], answer: "Google Forms" },
+            // Menganalisis
+            { question: "Ketika seorang pengembang membuat storyboard dan rancangan tampilan, ia berada pada tahap... dalam model ADDIE.", options: ["Analysis", "Design", "Development", "Implementation"], answer: "Design" },
+            { question: "Tantangan berupa 'keterbatasan kemampuan teknologi guru' menunjukkan bahwa...", options: ["Guru tidak mau belajar teknologi.", "Implementasi media interaktif membutuhkan dukungan pelatihan bagi pengajar.", "Siswa lebih ahli daripada guru.", "Harga software terlalu mahal."], answer: "Implementasi media interaktif membutuhkan dukungan pelatihan bagi pengajar." },
+            // Mengevaluasi
+            { question: "Seorang guru telah membuat media interaktif. Untuk mengukur apakah media tersebut menarik dan disukai siswa, aspek evaluasi manakah yang paling relevan?", options: ["Aspek Teknis", "Aspek Pembelajaran", "Aspek Respon Siswa", "Aspek Biaya"], answer: "Aspek Respon Siswa" },
+            { question: "Menurut materi, apa langkah paling krusial yang harus dilakukan SEBELUM masuk ke tahap 'Development' (pembuatan media)?", options: ["Melakukan evaluasi akhir.", "Menganalisis kebutuhan siswa dan membuat desain (storyboard).", "Mempublikasikan media ke siswa.", "Membeli software yang paling mahal."], answer: "Menganalisis kebutuhan siswa dan membuat desain (storyboard)." }
+        ];
+
+        const quizContainer = document.getElementById('quizContainer');
+        const submitQuizBtn = document.getElementById('submitQuizBtn');
+        const quizResult = document.getElementById('quizResult');
+
+        function loadQuiz() {
+            quizContainer.innerHTML = '';
+            quizData.forEach((item, index) => {
+                const questionEl = document.createElement('div');
+                questionEl.innerHTML = `<p class="font-semibold text-lg mb-3">${index + 1}. ${item.question}</p>`;
+                const optionsEl = document.createElement('div');
+                optionsEl.classList.add('space-y-2');
+                optionsEl.id = `q${index}`;
+                item.options.forEach(option => {
+                    optionsEl.innerHTML += `<label class="quiz-option block p-3 rounded-lg cursor-pointer"><input type="radio" name="question${index}" value="${option}" class="hidden"><span>${option}</span></label>`;
+                });
+                questionEl.appendChild(optionsEl);
+                quizContainer.appendChild(questionEl);
+            });
+            
+            document.querySelectorAll('.quiz-option').forEach(item => {
+                item.addEventListener('click', () => {
+                    item.parentElement.querySelectorAll('.quiz-option').forEach(label => label.classList.remove('selected'));
+                    item.classList.add('selected');
+                });
+            });
+        }
+
+        submitQuizBtn.addEventListener('click', () => {
+            let score = 0;
+            quizData.forEach((item, index) => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                document.querySelectorAll(`#q${index} .quiz-option`).forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    if (label.querySelector('input').value === item.answer) {
+                        label.classList.add('correct');
+                    }
+                });
+                if (selectedOption) {
+                    if (selectedOption.value === item.answer) {
+                        score++;
+                    } else {
+                        selectedOption.parentElement.classList.add('incorrect');
+                    }
+                }
+            });
+            quizResult.textContent = `Skor Anda: ${score} dari ${quizData.length}`;
+            Tone.start();
+            synth.triggerAttackRelease(score === quizData.length ? 'G5' : 'C3', '8n');
+        });
+
+        loadQuiz();
+    </script>
+
+</body>
+</html>
+
+
