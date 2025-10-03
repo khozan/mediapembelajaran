@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misi 6: Evaluasi & Pemilihan Media</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #020024 0%, #090979 35%, #00d4ff 100%);
+            overflow-x: hidden;
+            color: #e0f2fe;
+        }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .glass-card {
+            background: rgba(2, 0, 36, 0.3);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+        .nav-button {
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid rgba(0, 212, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        .nav-button:hover {
+            background: rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .back-button {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: 50;
+        }
+        .quiz-option {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+        .quiz-option:hover {
+            background-color: rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.8);
+        }
+        .quiz-option.selected {
+            background-color: rgba(0, 212, 255, 0.3);
+            border-color: #00d4ff;
+        }
+        .quiz-option.correct {
+            background-color: rgba(22, 163, 74, 0.5);
+            border-color: #16a34a;
+        }
+        .quiz-option.incorrect {
+            background-color: rgba(220, 38, 38, 0.5);
+            border-color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="min-h-screen p-4 sm:p-8">
+
+        <!-- ===== HALAMAN UTAMA (HOME) ===== -->
+        <section id="homeSection" class="min-h-screen flex flex-col items-center justify-center text-center">
+            <div class="glass-card max-w-5xl w-full">
+                <h1 class="font-cinzel text-4xl md:text-6xl font-bold" style="text-shadow: 0 0 15px rgba(0, 212, 255, 0.8);">Misi 6: Evaluasi & Pemilihan Media</h1>
+                <p class="mt-4 mb-8 max-w-2xl mx-auto text-gray-300">Menjadi arsitek pembelajaran! Misi ini akan membimbingmu dalam memilih dan mengevaluasi media pembelajaran bahasa Arab yang paling efektif untuk mencapai tujuan.</p>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <button onclick="showSection('materi1Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-bullseye text-3xl mb-2"></i><br>Dasar Pemilihan
+                    </button>
+                    <button onclick="showSection('materi2Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-shoe-prints text-3xl mb-2"></i><br>Langkah & Contoh
+                    </button>
+                    <button onclick="showSection('materi3Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-balance-scale text-3xl mb-2"></i><br>Prinsip Evaluasi
+                    </button>
+                    <button onclick="showSection('materi4Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-tasks text-3xl mb-2"></i><br>Proses & Kriteria
+                    </button>
+                    <button onclick="showSection('materi5Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-exclamation-triangle text-3xl mb-2"></i><br>Tantangan
+                    </button>
+                    <button onclick="showSection('quizSection')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-question-circle text-3xl mb-2"></i><br>Uji Pengetahuan
+                    </button>
+                </div>
+                <a href="index.html" class="inline-block mt-8 text-cyan-300 hover:text-white transition">
+                    <i class="fas fa-arrow-left mr-2"></i>Kembali ke Peta Misi
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 1 ===== -->
+        <section id="materi1Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Dasar Pemilihan Media</h3>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Pengertian Pemilihan Media</h4>
+                        <p>Proses memilih alat atau platform yang sesuai untuk membantu siswa mencapai tujuan pembelajaran dengan lebih efisien dan efektif.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">B. Faktor-faktor Pemilihan</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                           <li><b>Tujuan Pembelajaran:</b> Media harus sesuai dengan tujuan (misal: meningkatkan maharah kalam).</li>
+                           <li><b>Karakteristik Siswa:</b> Pertimbangkan gaya belajar (visual, auditori, kinestetik).</li>
+                           <li><b>Ketersediaan Teknologi:</b> Pastikan teknologi dapat diakses seluruh siswa.</li>
+                           <li><b>Dukungan Pedagogis:</b> Media harus mendukung pendekatan pengajaran.</li>
+                           <li><b>Biaya dan Ketersediaan:</b> Pilih yang efektif dan terjangkau.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 2 ===== -->
+        <section id="materi2Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-4xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Langkah Pemilihan & Contoh Media</h3>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Langkah-langkah Pemilihan</h4>
+                         <ol class="list-decimal list-inside ml-4 space-y-1">
+                            <li><b>Identifikasi Kebutuhan:</b> Analisis kebutuhan siswa dan kurikulum.</li>
+                            <li><b>Kaji Pilihan Media:</b> Bandingkan berbagai jenis media yang ada.</li>
+                            <li><b>Cocokkan dengan Gaya Belajar:</b> Sesuaikan media dengan siswa (visual, auditori, dll).</li>
+                            <li><b>Pertimbangkan Pengalaman Pengguna:</b> Pilih media yang mudah digunakan.</li>
+                            <li><b>Tinjau Teknologi:</b> Pastikan infrastruktur mendukung.</li>
+                        </ol>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg mt-4">B. Contoh Media</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li><b>Visual:</b> Buku teks digital interaktif, Infografis.</li>
+                            <li><b>Audio:</b> Podcast Bahasa Arab, Rekaman Dialog.</li>
+                            <li><b>Interaktif:</b> Aplikasi Mobile (Duolingo), Situs Pembelajaran (ArabicPod101).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===== HALAMAN MATERI 3 ===== -->
+        <section id="materi3Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                 <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Prinsip-prinsip Evaluasi Media</h3>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Pengertian Evaluasi Media</h4>
+                        <p>Proses sistematis untuk mengukur efektivitas media pembelajaran dalam mencapai tujuan pendidikan.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">B. Faktor Evaluasi Utama</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                           <li><b>Relevansi terhadap Tujuan:</b> Apakah media membantu mencapai tujuan?</li>
+                           <li><b>Efektivitas Pembelajaran:</b> Apakah media meningkatkan hasil belajar siswa?</li>
+                           <li><b>Daya Tarik dan Motivasi:</b> Apakah media menarik dan memotivasi siswa?</li>
+                           <li><b>Interaktivitas:</b> Apakah media memungkinkan siswa berpartisipasi aktif?</li>
+                           <li><b>Keterjangkauan:</b> Apakah media mudah diakses tanpa biaya besar?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===== HALAMAN MATERI 4 ===== -->
+        <section id="materi4Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-4xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Proses & Kriteria Evaluasi</h3>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Proses Evaluasi</h4>
+                         <ol class="list-decimal list-inside ml-4 space-y-1">
+                            <li><b>Persiapan Uji Coba:</b> Pilih kelompok siswa untuk uji coba.</li>
+                            <li><b>Observasi:</b> Amati interaksi siswa dengan media.</li>
+                            <li><b>Pengumpulan Umpan Balik:</b> Minta feedback dari siswa.</li>
+                            <li><b>Analisis Hasil Belajar:</b> Bandingkan hasil sebelum dan sesudah.</li>
+                            <li><b>Revisi Media:</b> Lakukan perbaikan jika diperlukan.</li>
+                        </ol>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg mt-4">B. Kriteria Penilaian</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li><b>Kualitas Konten:</b> Akurat dan sesuai kurikulum.</li>
+                            <li><b>Kemudahan Akses:</b> Mudah digunakan tanpa kendala teknis.</li>
+                            <li><b>Dampak pada Pembelajaran:</b> Berkontribusi pada peningkatan kemampuan.</li>
+                            <li><b>Fleksibilitas:</b> Bisa digunakan di berbagai konteks (online/offline).</li>
+                            <li><b>Kesempatan Interaksi:</b> Memungkinkan interaksi siswa.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 5 ===== -->
+        <section id="materi5Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Tantangan dalam Evaluasi & Pemilihan</h3>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li>
+                            <h4 class="font-semibold text-cyan-400 inline">Kendala Teknologi:</h4>
+                            <p class="inline"> Tidak semua siswa memiliki akses yang sama.</p>
+                        </li>
+                        <li>
+                             <h4 class="font-semibold text-cyan-400 inline">Keterbatasan Anggaran:</h4>
+                            <p class="inline"> Beberapa platform memerlukan langganan berbayar.</p>
+                        </li>
+                        <li>
+                             <h4 class="font-semibold text-cyan-400 inline">Perbedaan Gaya Belajar:</h4>
+                            <p class="inline"> Satu media mungkin tidak cocok untuk semua siswa.</p>
+                        </li>
+                         <li>
+                             <h4 class="font-semibold text-cyan-400 inline">Ketersediaan Konten Lokal:</h4>
+                            <p class="inline"> Media global kadang tidak sesuai konteks lokal.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN QUIZ ===== -->
+        <section id="quizSection" class="hidden relative min-h-screen flex flex-col items-center justify-center">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-center mb-8">Arena Ujian Seleksi</h2>
+                <div id="quizContainer" class="space-y-6"></div>
+                <div class="text-center mt-8">
+                    <button id="submitQuizBtn" class="nav-button py-3 px-8 rounded-lg font-bold text-lg">Cek Jawaban</button>
+                    <p id="quizResult" class="mt-4 text-xl font-bold"></p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const synth = new Tone.Synth().toDestination();
+
+        function showSection(sectionId) {
+            Tone.start();
+            synth.triggerAttackRelease('C4', '8n');
+            sections.forEach(section => {
+                section.classList.toggle('hidden', section.id !== sectionId);
+            });
+            window.scrollTo(0, 0);
+        }
+
+        const quizData = [
+            // Mengetahui
+            { question: "Berikut ini yang BUKAN merupakan faktor utama dalam pemilihan media pembelajaran adalah...", options: ["Tujuan Pembelajaran", "Karakteristik Siswa", "Warna favorit guru", "Biaya dan Ketersediaan"], answer: "Warna favorit guru" },
+            { question: "Proses sistematis untuk mengukur efektivitas media pembelajaran disebut...", options: ["Pemilihan Media", "Evaluasi Media", "Implementasi Media", "Desain Media"], answer: "Evaluasi Media" },
+            // Memahami
+            { question: "Mengapa karakteristik siswa (gaya belajar) penting dipertimbangkan saat memilih media?", options: ["Agar media terlihat lebih canggih.", "Agar media yang cocok untuk satu gaya belajar bisa efektif untuk semua.", "Agar sesuai dengan anggaran sekolah.", "Agar pembelajaran lebih efektif karena sesuai dengan cara belajar siswa."], answer: "Agar pembelajaran lebih efektif karena sesuai dengan cara belajar siswa." },
+            { question: "Apa tujuan utama dari 'Analisis Hasil Belajar' dalam proses evaluasi media?", options: ["Untuk mengetahui apakah siswa menyukai media tersebut.", "Untuk membandingkan peningkatan kemampuan siswa sebelum dan sesudah memakai media.", "Untuk memeriksa apakah ada kesulitan teknis.", "Untuk mengumpulkan umpan balik dari siswa."], answer: "Untuk membandingkan peningkatan kemampuan siswa sebelum dan sesudah memakai media." },
+            // Menerapkan
+            { question: "Seorang guru ingin meningkatkan maharah istima' (mendengar) siswanya. Contoh media yang paling tepat untuk dipilih adalah...", options: ["Infografis tata bahasa", "Buku teks digital", "Podcast Bahasa Arab", "Aplikasi flashcard"], answer: "Podcast Bahasa Arab" },
+            { question: "Seorang guru meminta sekelompok siswa untuk mencoba aplikasi baru dan mengisi kuesioner setelahnya. Tahap evaluasi yang sedang dilakukan adalah...", options: ["Persiapan Uji Coba & Pengumpulan Umpan Balik", "Revisi Media", "Analisis Hasil Belajar", "Observasi"], answer: "Persiapan Uji Coba & Pengumpulan Umpan Balik" },
+            // Menganalisis
+            { question: "Jika sebuah sekolah memiliki akses internet yang terbatas, faktor pemilihan media manakah yang menjadi prioritas utama?", options: ["Dukungan Pedagogis", "Ketersediaan Teknologi dan Infrastruktur", "Karakteristik Siswa", "Tujuan Pembelajaran"], answer: "Ketersediaan Teknologi dan Infrastruktur" },
+            { question: "Sebuah media memiliki konten yang sangat akurat (Kualitas Konten bagus), tetapi sulit digunakan oleh siswa (Kemudahan Akses buruk). Apa kesimpulan yang bisa ditarik?", options: ["Media tersebut sempurna dan siap digunakan.", "Media tersebut tidak efektif karena siswa kesulitan mengakses kontennya.", "Media tersebut hanya cocok untuk siswa yang pintar.", "Konten yang akurat lebih penting daripada kemudahan akses."], answer: "Media tersebut tidak efektif karena siswa kesulitan mengakses kontennya." },
+            // Mengevaluasi
+            { question: "Menurut Anda, kriteria evaluasi manakah yang paling menentukan keberhasilan sebuah media dalam proses belajar mengajar?", options: ["Biaya yang paling murah.", "Tampilan visual yang paling ramai.", "Dampak langsung pada peningkatan kemampuan bahasa Arab siswa.", "Fleksibilitas penggunaan di berbagai perangkat."], answer: "Dampak langsung pada peningkatan kemampuan bahasa Arab siswa." },
+            { question: "Seorang guru menemukan aplikasi mahal yang sangat canggih. Namun, sebagian besar siswanya tidak memiliki smartphone yang mendukung. Keputusan terbaik menurut prinsip pemilihan media adalah...", options: ["Memaksa semua siswa membeli smartphone baru.", "Tetap menggunakan aplikasi tersebut walau hanya untuk beberapa siswa.", "Mencari alternatif media lain yang lebih terjangkau dan dapat diakses semua siswa.", "Membatalkan penggunaan media digital sama sekali."], answer: "Mencari alternatif media lain yang lebih terjangkau dan dapat diakses semua siswa." }
+        ];
+
+        const quizContainer = document.getElementById('quizContainer');
+        const submitQuizBtn = document.getElementById('submitQuizBtn');
+        const quizResult = document.getElementById('quizResult');
+
+        function loadQuiz() {
+            quizContainer.innerHTML = '';
+            quizData.forEach((item, index) => {
+                const questionEl = document.createElement('div');
+                questionEl.innerHTML = `<p class="font-semibold text-lg mb-3">${index + 1}. ${item.question}</p>`;
+                const optionsEl = document.createElement('div');
+                optionsEl.classList.add('space-y-2');
+                optionsEl.id = `q${index}`;
+                item.options.forEach(option => {
+                    optionsEl.innerHTML += `<label class="quiz-option block p-3 rounded-lg cursor-pointer"><input type="radio" name="question${index}" value="${option}" class="hidden"><span>${option}</span></label>`;
+                });
+                questionEl.appendChild(optionsEl);
+                quizContainer.appendChild(questionEl);
+            });
+            
+            document.querySelectorAll('.quiz-option').forEach(item => {
+                item.addEventListener('click', () => {
+                    item.parentElement.querySelectorAll('.quiz-option').forEach(label => label.classList.remove('selected'));
+                    item.classList.add('selected');
+                });
+            });
+        }
+
+        submitQuizBtn.addEventListener('click', () => {
+            let score = 0;
+            quizData.forEach((item, index) => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                document.querySelectorAll(`#q${index} .quiz-option`).forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    if (label.querySelector('input').value === item.answer) {
+                        label.classList.add('correct');
+                    }
+                });
+                if (selectedOption) {
+                    if (selectedOption.value === item.answer) {
+                        score++;
+                    } else {
+                        selectedOption.parentElement.classList.add('incorrect');
+                    }
+                }
+            });
+            quizResult.textContent = `Skor Anda: ${score} dari ${quizData.length}`;
+            Tone.start();
+            synth.triggerAttackRelease(score === quizData.length ? 'G5' : 'C3', '8n');
+        });
+
+        loadQuiz();
+    </script>
+
+</body>
+</html>
