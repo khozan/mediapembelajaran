@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Video Wayground (Quizizz) - Misi 5</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #020024 0%, #090979 35%, #00d4ff 100%);
+            overflow-x: hidden;
+            color: #e0f2fe;
+        }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .glass-card {
+            background: rgba(2, 0, 36, 0.3);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+        .nav-button {
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid rgba(0, 212, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        .nav-button:hover {
+            background: rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .back-button {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: 50;
+        }
+        .video-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        .video-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="min-h-screen p-4 sm:p-8 flex flex-col items-center justify-center relative">
+
+        <!-- Tombol Kembali ke Halaman Utama Misi --><a href="materi7.html" class="back-button nav-button p-3 rounded-full text-xl" aria-label="Kembali ke menu utama">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+
+        <!-- Konten Utama Halaman Tutorial --><section class="w-full flex justify-center">
+            <div class="glass-card max-w-4xl w-full">
+                <!-- Judul --><h1 class="font-cinzel text-center text-3xl md:text-5xl font-bold" style="text-shadow: 0 0 15px rgba(0, 212, 255, 0.8);">
+                    Tutorial Wayground (Quizizz)
+                </h1>
+                <p class="mt-2 mb-8 text-center text-gray-300">
+                    Panduan lengkap menggunakan fitur Wayground di Quizizz untuk membuat petualangan belajar yang menarik.
+                </p>
+
+                <!-- Video YouTube Responsif --><div class="video-container rounded-lg overflow-hidden border-2 border-cyan-500/50 shadow-lg shadow-cyan-500/20">
+                    <iframe
+                        class="video-iframe"
+                        src="https://www.youtube.com/embed/PE0WgOQcy_4"
+                        title="PANDUAN LENGKAP WAYGROUND UNTUK GURU PEMULA"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <!-- Deskripsi atau Poin-Poin Video --><div class="mt-8 text-left space-y-6 text-gray-300">
+                    <div>
+                        <h2 class="font-semibold text-2xl text-cyan-300 mb-2">
+                            <i class="fas fa-gamepad mr-2"></i>Tentang Wayground
+                        </h2>
+                        <p>
+                            Wayground adalah fitur inovatif dari Quizizz yang memungkinkan guru membuat pengalaman belajar berbasis petualangan (journey) yang lebih mendalam dan interaktif. Ini bukan hanya kuis biasa, melainkan serangkaian aktivitas dan misi yang harus diselesaikan siswa.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 class="font-semibold text-2xl text-cyan-300 mb-3">
+                            <i class="fas fa-list-ol mr-2"></i>Poin Penting dalam Tutorial Ini
+                        </h2>
+                        <ul class="list-disc list-inside space-y-2 pl-2">
+                            <li><strong>Pengenalan Wayground:</strong> Memahami konsep dan manfaat Wayground dibandingkan kuis biasa.</li>
+                            <li><strong>Akses & Membuat Wayground Baru:</strong> Langkah-langkah awal untuk memulai project Wayground di Quizizz.</li>
+                            <li><strong>Menambahkan Aktivitas:</strong> Cara menyisipkan berbagai jenis pertanyaan (pilihan ganda, esai, mengisi bagian kosong) serta elemen interaktif lainnya.</li>
+                            <li><strong>Pengaturan Path (Jalur):</strong> Mendesain alur belajar siswa, termasuk percabangan jalur berdasarkan jawaban atau pilihan siswa.</li>
+                            <li><strong>Menyesuaikan Tampilan:</strong> Mengubah tema, latar belakang, dan elemen visual untuk pengalaman yang lebih imersif.</li>
+                            <li><strong>Membuat Hadiah & Umpan Balik:</strong> Menyiapkan reward virtual dan feedback otomatis untuk memotivasi siswa.</li>
+                            <li><strong>Membagikan Wayground:</strong> Cara mempublikasikan dan membagikan petualangan belajar Anda kepada siswa.</li>
+                            <li><strong>Analisis Hasil:</strong> Memantau progres dan kinerja siswa dalam menyelesaikan Wayground.</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                         <h2 class="font-semibold text-2xl text-cyan-300 mb-3">
+                            <i class="fas fa-lightbulb mr-2"></i>Manfaat Wayground
+                        </h2>
+                        <ul class="list-disc list-inside space-y-2 pl-2">
+                            <li>Meningkatkan keterlibatan siswa dengan elemen gamifikasi.</li>
+                            <li>Memungkinkan pembelajaran yang lebih adaptif dan personal.</li>
+                            <li>Memberikan pengalaman belajar yang lebih menyenangkan dan berkesan.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tombol Aksi (Call to Action) --><div class="text-center mt-10">
+                    <a href="https://quizizz.com/" target="_blank" rel="noopener noreferrer" class="nav-button py-3 px-8 rounded-lg font-bold text-lg inline-block">
+                        <i class="fas fa-external-link-alt mr-2"></i>Kunjungi Quizizz & Coba Wayground
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

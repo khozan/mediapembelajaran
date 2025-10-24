@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misi 7: Media Berbasis Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #020024 0%, #090979 35%, #00d4ff 100%);
+            overflow-x: hidden;
+            color: #e0f2fe;
+        }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .glass-card {
+            background: rgba(2, 0, 36, 0.3);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+        .nav-button {
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid rgba(0, 212, 255, 0.7);
+            transition: all 0.3s ease;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .nav-button:hover {
+            background: rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .back-button {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: 50;
+        }
+        .quiz-option {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+        .quiz-option:hover {
+            background-color: rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.8);
+        }
+        .quiz-option.selected {
+            background-color: rgba(0, 212, 255, 0.3);
+            border-color: #00d4ff;
+        }
+        .quiz-option.correct {
+            background-color: rgba(22, 163, 74, 0.5);
+            border-color: #16a34a;
+        }
+        .quiz-option.incorrect {
+            background-color: rgba(220, 38, 38, 0.5);
+            border-color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="min-h-screen p-4 sm:p-8">
+
+        <!-- ===== HALAMAN UTAMA (HOME) ===== -->
+        <section id="homeSection" class="min-h-screen flex flex-col items-center justify-center text-center">
+            <div class="glass-card max-w-5xl w-full">
+                <h1 class="font-cinzel text-4xl md:text-6xl font-bold" style="text-shadow: 0 0 15px rgba(0, 212, 255, 0.8);">Misi 7: Media Berbasis Game</h1>
+                <p class="mt-4 mb-8 max-w-2xl mx-auto text-gray-300">Level up! Saatnya menggunakan kekuatan permainan (game) untuk membuat pembelajaran bahasa Arab lebih seru, interaktif, dan kompetitif. Siap bermain?</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <button onclick="showSection('materi1Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-gamepad text-3xl mb-2"></i><br>Pengantar & Konsep
+                    </button>
+                    <button onclick="showSection('materi2Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-trophy text-3xl mb-2"></i><br>Manfaat Game
+                    </button>
+                    <button onclick="showSection('materi3Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-list-ol text-3xl mb-2"></i><br>Langkah Penerapan
+                    </button>
+                    <button onclick="showSection('materi4Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-dice text-3xl mb-2"></i><br>Contoh Platform
+                    </button>
+                    <button onclick="showSection('materi5Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-magic text-3xl mb-2"></i><br>Tips Desain
+                    </button>
+                    <button onclick="showSection('materi6Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-tasks text-3xl mb-2"></i><br>Kurikulum & Penugasan
+                    </button>
+                     <a href="tutorial wayground.html" class="nav-button p-4 rounded-lg font-semibold text-center">
+                        <i class="fas fa-video text-3xl mb-2"></i><br>Tonton Tutorial Quizizz
+                    </a>
+                    <button onclick="showSection('quizSection')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-question-circle text-3xl mb-2"></i><br>Uji Pengetahuan
+                    </button>
+                </div>
+                <a href="index.html" class="inline-block mt-8 text-cyan-300 hover:text-white transition">
+                    <i class="fas fa-arrow-left mr-2"></i>Kembali ke Peta Misi
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 1 ===== -->
+        <section id="materi1Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Pengantar & Konsep Dasar Game</h3>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Pengantar</h4>
+                        <p>Pendekatan ini memanfaatkan unsur permainan untuk meningkatkan motivasi, keterlibatan, dan pemahaman. Tujuannya mencapai penguasaan mufradāt, qawā‘id, dan 4 keterampilan berbahasa.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">B. Konsep Dasar</h4>
+                        <p>Media yang menggunakan mekanisme permainan (skor, peringkat, waktu) untuk tujuan pembelajaran. Ciri utamanya:</p>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                           <li>Adanya tantangan (challenge) dan umpan balik langsung (immediate feedback).</li>
+                           <li>Menumbuhkan motivasi intrinsik dan kompetisi sehat.</li>
+                           <li>Memungkinkan pengulangan (repetition) tanpa kebosanan.</li>
+                           <li>Menurut Gee (2007), game membantu belajar melalui <i>experiential learning</i> (belajar dari pengalaman).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 2 ===== -->
+        <section id="materi2Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Manfaat Penggunaan Game</h3>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li>
+                            <h4 class="font-semibold text-cyan-400 inline">Meningkatkan Motivasi & Keterlibatan:</h4>
+                            <p class="inline"> Menciptakan suasana aktif, partisipatif, dan kompetitif.</p>
+                        </li>
+                         <li>
+                            <h4 class="font-semibold text-cyan-400 inline">Memperkuat Kosakata & Struktur:</h4>
+                            <p class="inline"> Pengulangan dalam konteks menyenangkan mempermudah ingatan.</p>
+                        </li>
+                         <li>
+                            <h4 class="font-semibold text-cyan-400 inline">Meningkatkan Keterampilan Berbahasa:</h4>
+                            <p class="inline"> Melatih 4 maharah (istima', kalam, qira'ah, kitabah) secara variatif.</p>
+                        </li>
+                         <li>
+                            <h4 class="font-semibold text-cyan-400 inline">Mendorong Pembelajaran Kolaboratif:</h4>
+                            <p class="inline"> Game berbasis tim mendorong kerja sama dan komunikasi.</p>
+                        </li>
+                         <li>
+                            <h4 class="font-semibold text-cyan-400 inline">Menyediakan Umpan Balik Langsung:</h4>
+                            <p class="inline"> Sistem skor/peringkat memberi feedback cepat.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===== HALAMAN MATERI 3 ===== -->
+        <section id="materi3Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                 <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Langkah Penerapan Media Game</h3>
+                    <ol class="list-decimal list-inside ml-4 space-y-2">
+                        <li>
+                            <h4 class="font-semibold text-cyan-400 inline">Menentukan Tujuan Pembelajaran:</h4>
+                            <p class="inline"> Contoh: Mahasiswa mampu memahami 20 kosakata tentang "Rumah".</p>
+                        </li>
+                        <li>
+                            <h4 class="font-semibold text-cyan-400 inline">Memilih Platform Game Edukatif:</h4>
+                            <p class="inline"> Quizizz (kuis interaktif), Kahoot (kompetisi), Wordwall (latihan berulang).</p>
+                        </li>
+                        <li>
+                            <h4 class="font-semibold text-cyan-400 inline">Membuat Soal dan Desain Game:</h4>
+                            <p class="inline"> Pilihan ganda, mencocokkan, mengisi kalimat, atau teka-teki.</p>
+                        </li>
+                        <li>
+                            <h4 class="font-semibold text-cyan-400 inline">Pelaksanaan di Kelas:</h4>
+                            <p class="inline"> Mahasiswa bermain individu atau kelompok via perangkat.</p>
+                        </li>
+                        <li>
+                            <h4 class="font-semibold text-cyan-400 inline">Evaluasi dan Refleksi:</h4>
+                            <p class="inline"> Dosen memberi umpan balik dan mendiskusikan hasil.</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===== HALAMAN MATERI 4 ===== -->
+        <section id="materi4Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-4xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Contoh Platform Game</h3>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <!-- Quizizz -->
+                        <div class="bg-cyan-900/30 p-3 rounded-lg">
+                            <h4 class="font-semibold text-cyan-400 text-lg">A. Quizizz</h4>
+                            <p><b>Fungsi:</b> Evaluasi kosakata dan struktur kalimat (kuis berwaktu).</p>
+                            <p><b>Kelebihan:</b> Visual menarik, hasil otomatis direkap.</p>
+                            <p><b>Contoh:</b> Kuis “ما اسم هذه الفاكهة؟ 🍎” → (أ) تفاح</p>
+                        </div>
+                        <!-- Kahoot -->
+                         <div class="bg-cyan-900/30 p-3 rounded-lg">
+                            <h4 class="font-semibold text-cyan-400 text-lg">B. Kahoot</h4>
+                            <p><b>Fungsi:</b> Kompetisi cepat di kelas (proyeksi layar utama).</p>
+                            <p><b>Kelebihan:</b> Sangat kompetitif, cocok untuk ice-breaking.</p>
+                            <p><b>Contoh:</b> Tebak arti: “المدرسة” → (A) Sekolah.</p>
+                        </div>
+                        <!-- Wordwall -->
+                         <div class="bg-cyan-900/30 p-3 rounded-lg">
+                            <h4 class="font-semibold text-cyan-400 text-lg">C. Wordwall</h4>
+                            <p><b>Fungsi:</b> Latihan berulang (match up, word search, anagram).</p>
+                            <p><b>Kelebihan:</b> Bisa online/cetak, cocok untuk penguatan kosakata.</p>
+                            <p><b>Contoh:</b> Cocokkan kata “طالب” dengan gambar siswa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 5 ===== -->
+        <section id="materi5Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Tips Mendesain Game yang Efektif</h3>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li>Gunakan bahasa Arab secara kontekstual, bukan sekadar hafalan.</li>
+                        <li>Sertakan audio dan gambar untuk mendukung pemahaman visual dan auditori.</li>
+                        <li>Buat level kesulitan bertahap (mudah ke sulit).</li>
+                        <li>Gunakan reward system (poin, badge, sertifikat).</li>
+                        <li>Lakukan refleksi setelah bermain agar mahasiswa memahami kesalahan.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 6 ===== -->
+        <section id="materi6Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Kurikulum & Penugasan</h3>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Keterkaitan dengan Kurikulum</h4>
+                        <p>Penggunaan game mendukung pencapaian CPMK, terutama pada aspek:</p>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Penguasaan kompetensi linguistik (kosakata dan qawa‘id).</li>
+                            <li>Pengembangan keterampilan komunikasi.</li>
+                            <li>Pemanfaatan teknologi digital untuk pembelajaran.</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">B. Penugasan Mahasiswa (Tugas Individu)</h4>
+                        <ul class="list-disc list-inside ml-4">
+                            <li>Buat satu game pembelajaran bahasa Arab menggunakan Quizizz, Kahoot, atau Wordwall.</li>
+                            <li>Tema: Perkenalan Diri, Keluarga, atau Kegiatan Sehari-hari.</li>
+                            <li>Minimal 10 soal dengan unsur bahasa Arab (teks, gambar, audio).</li>
+                            <li>Hasil game dipresentasikan dan dicoba bersama di kelas.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN QUIZ ===== -->
+        <section id="quizSection" class="hidden relative min-h-screen flex flex-col items-center justify-center">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-center mb-8">Arena Ujian Game</h2>
+                <div id="quizContainer" class="space-y-6"></div>
+                <div class="text-center mt-8">
+                    <button id="submitQuizBtn" class="nav-button py-3 px-8 rounded-lg font-bold text-lg">Cek Jawaban</button>
+                    <p id="quizResult" class="mt-4 text-xl font-bold"></p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const synth = new Tone.Synth().toDestination();
+
+        function showSection(sectionId) {
+            Tone.start();
+            synth.triggerAttackRelease('C4', '8n');
+            sections.forEach(section => {
+                section.classList.toggle('hidden', section.id !== sectionId);
+            });
+            window.scrollTo(0, 0);
+        }
+
+        const quizData = [
+            // Mengetahui
+            { question: "Berikut ini yang merupakan ciri utama media pembelajaran berbasis game adalah...", options: ["Hanya fokus pada hafalan", "Tidak memiliki batas waktu", "Adanya tantangan dan umpan balik langsung", "Hanya bisa dimainkan individu"], answer: "Adanya tantangan dan umpan balik langsung" },
+            { question: "Menurut Gee (2007), permainan edukatif membantu peserta didik belajar melalui...", options: ["Experiential Learning (belajar dari pengalaman)", "Rote Learning (belajar menghafal)", "Passive Learning (belajar pasif)", "Observational Learning (belajar mengamati)"], answer: "Experiential Learning (belajar dari pengalaman)" },
+            // Memahami
+            { question: "Mengapa game dianggap dapat memperkuat penguasaan kosakata?", options: ["Karena game selalu sulit.", "Karena game memungkinkan pengulangan tanpa kebosanan.", "Karena game hanya fokus pada kosakata.", "Karena game menggunakan audio saja."], answer: "Karena game memungkinkan pengulangan tanpa kebosanan." },
+            { question: "Apa manfaat utama menggunakan Kahoot di dalam kelas?", options: ["Membuat soal yang sangat panjang.", "Menumbuhkan semangat kompetitif secara langsung.", "Fokus pada latihan menulis (kitabah).", "Bisa dimainkan tanpa internet."], answer: "Menumbuhkan semangat kompetitif secara langsung." },
+            // Menerapkan
+            { question: "Seorang guru ingin siswanya latihan mencocokkan kosakata dan gambar secara berulang-ulang. Platform apa yang paling cocok?", options: ["Kahoot", "Quizizz", "Wordwall", "Google Docs"], answer: "Wordwall" },
+            { question: "Langkah pertama dalam menerapkan media game di kelas adalah...", options: ["Membuat soal dan desain game", "Menentukan Tujuan Pembelajaran", "Memilih platform", "Melakukan evaluasi"], answer: "Menentukan Tujuan Pembelajaran" },
+            // Menganalisis
+            { question: "Apa perbedaan utama antara mode permainan Kahoot dan Quizizz?", options: ["Kahoot gratis, Quizizz bayar.", "Kahoot tidak ada skor, Quizizz ada skor.", "Kahoot mengandalkan layar utama, Quizizz tampil di perangkat masing-masing.", "Quizizz hanya untuk kosakata, Kahoot untuk tata bahasa."], answer: "Kahoot mengandalkan layar utama, Quizizz tampil di perangkat masing-masing." },
+            { question: "Seorang guru menggunakan game, namun siswa hanya fokus bermain dan tidak memahami materi. Tips desain apa yang mungkin terlewat?", options: ["Menggunakan reward system", "Melakukan refleksi setelah bermain", "Membuat level kesulitan bertahap", "Menambahkan audio dan gambar"], answer: "Melakukan refleksi setelah bermain" },
+            // Mengevaluasi
+            { question: "Manakah yang BUKAN merupakan manfaat langsung dari penggunaan game dalam pembelajaran bahasa Arab?", options: ["Meningkatkan motivasi belajar siswa.", "Menjamin semua siswa pasti lulus ujian.", "Menyediakan umpan balik langsung atas kesalahan.", "Mendorong pembelajaran kolaboratif."], answer: "Menjamin semua siswa pasti lulus ujian." },
+            { question: "Dalam penugasan, mahasiswa diminta membuat game 10 soal bertema 'Keluarga'. Hal ini mendukung pencapaian CPMK dalam aspek...", options: ["Hanya kompetensi linguistik", "Hanya keterampilan komunikasi", "Kompetensi linguistik dan pemanfaatan teknologi digital", "Hanya aspek hiburan"], answer: "Kompetensi linguistik dan pemanfaatan teknologi digital" }
+        ];
+
+        const quizContainer = document.getElementById('quizContainer');
+        const submitQuizBtn = document.getElementById('submitQuizBtn');
+        const quizResult = document.getElementById('quizResult');
+
+        function loadQuiz() {
+            quizContainer.innerHTML = '';
+            quizData.forEach((item, index) => {
+                const questionEl = document.createElement('div');
+                questionEl.innerHTML = `<p class="font-semibold text-lg mb-3">${index + 1}. ${item.question}</p>`;
+                const optionsEl = document.createElement('div');
+                optionsEl.classList.add('space-y-2');
+                optionsEl.id = `q${index}`;
+                item.options.forEach(option => {
+                    optionsEl.innerHTML += `<label class="quiz-option block p-3 rounded-lg cursor-pointer"><input type="radio" name="question${index}" value="${option}" class="hidden"><span>${option}</span></label>`;
+                });
+                questionEl.appendChild(optionsEl);
+                quizContainer.appendChild(questionEl);
+            });
+            
+            document.querySelectorAll('.quiz-option').forEach(item => {
+                item.addEventListener('click', () => {
+                    item.parentElement.querySelectorAll('.quiz-option').forEach(label => label.classList.remove('selected'));
+                    item.classList.add('selected');
+                });
+            });
+        }
+
+        submitQuizBtn.addEventListener('click', () => {
+            let score = 0;
+            quizData.forEach((item, index) => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                document.querySelectorAll(`#q${index} .quiz-option`).forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    if (label.querySelector('input').value === item.answer) {
+                        label.classList.add('correct');
+                    }
+                });
+                if (selectedOption) {
+                    if (selectedOption.value === item.answer) {
+                        score++;
+                    } else {
+                        selectedOption.parentElement.classList.add('incorrect');
+                    }
+                }
+            });
+            quizResult.textContent = `Skor Anda: ${score} dari ${quizData.length}`;
+            Tone.start();
+            synth.triggerAttackRelease(score === quizData.length ? 'G5' : 'C3', '8n');
+        });
+
+        loadQuiz();
+    </script>
+
+</body>
+</html>
