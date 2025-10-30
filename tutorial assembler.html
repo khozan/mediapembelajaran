@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Video Assemblr AR - Misi 5</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #020024 0%, #090979 35%, #00d4ff 100%);
+            overflow-x: hidden;
+            color: #e0f2fe;
+        }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .glass-card {
+            background: rgba(2, 0, 36, 0.3);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+        .nav-button {
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid rgba(0, 212, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        .nav-button:hover {
+            background: rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .back-button {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: 50;
+        }
+        .video-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        .video-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="min-h-screen p-4 sm:p-8 flex flex-col items-center justify-center relative">
+
+        <!-- Tombol Kembali ke Halaman Utama Misi -->
+        <a href="materi5.html" class="back-button nav-button p-3 rounded-full text-xl" aria-label="Kembali ke menu utama">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+
+        <!-- Konten Utama Halaman Tutorial -->
+        <section class="w-full flex justify-center">
+            <div class="glass-card max-w-4xl w-full">
+                <!-- Judul -->
+                <h1 class="font-cinzel text-center text-3xl md:text-5xl font-bold" style="text-shadow: 0 0 15px rgba(0, 212, 255, 0.8);">
+                    Tutorial Assemblr AR
+                </h1>
+                <p class="mt-2 mb-8 text-center text-gray-300">
+                    Panduan membuat media pembelajaran biologi berbasis Augmented Reality (AR) menggunakan Assemblr Studio.
+                </p>
+
+                <!-- Video YouTube Responsif -->
+                <div class="video-container rounded-lg overflow-hidden border-2 border-cyan-500/50 shadow-lg shadow-cyan-500/20">
+                    <iframe
+                        class="video-iframe"
+                        src="https://www.youtube.com/embed/M6uN7SRIXDk"
+                        title="Tutorial Membuat Media Pembelajaran biologi Berbasis AR menggunakan Assemblr Studio"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <!-- Deskripsi atau Poin-Poin Video -->
+                <div class="mt-8 text-left space-y-6 text-gray-300">
+                    <div>
+                        <h2 class="font-semibold text-2xl text-cyan-300 mb-2">
+                            <i class="fas fa-cube mr-2"></i>Tentang Assemblr Studio
+                        </h2>
+                        <p>
+                            Assemblr Studio adalah platform yang memungkinkan Anda membuat konten Augmented Reality (AR) 3D yang interaktif langsung dari desktop Anda. Sangat cocok untuk membuat media pembelajaran yang imersif, seperti memvisualisasikan organ tubuh manusia, hewan purba, atau proses biologis.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 class="font-semibold text-2xl text-cyan-300 mb-3">
+                            <i class="fas fa-list-ol mr-2"></i>Poin Penting dalam Tutorial Ini
+                        </h2>
+                        <ul class="list-disc list-inside space-y-2 pl-2">
+                            <li><strong>Pengenalan Antarmuka:</strong> Memahami area kerja, panel aset, dan properti di Assemblr Studio.</li>
+                            <li><strong>Membuat Proyek Baru:</strong> Memulai proyek AR Anda dari awal.</li>
+                            <li><strong>Menambahkan Aset 3D:</strong> Cara mencari dan memasukkan berbagai aset 3D yang tersedia di library Assemblr (misal: organ untuk pelajaran biologi).</li>
+                            <li><strong>Menambahkan Elemen 2D:</strong> Menyisipkan teks, gambar, dan video untuk memberi penjelasan pada model 3D.</li>
+                            <li><strong>Fitur Interaktivitas:</strong> Membuat anotasi (label) pada bagian-bagian model 3D agar lebih informatif.</li>
+                            <li><strong>Publikasi & Berbagi:</strong> Cara mempublikasikan proyek Anda dan mendapatkan QR code.</li>
+                            <li><strong>Melihat Hasil AR:</strong> Menggunakan aplikasi Assemblr di smartphone untuk memindai QR code dan melihat media AR Anda "hidup" di dunia nyata.</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                         <h2 class="font-semibold text-2xl text-cyan-300 mb-3">
+                            <i class="fas fa-lightbulb mr-2"></i>Manfaat Media AR
+                        </h2>
+                        <ul class="list-disc list-inside space-y-2 pl-2">
+                            <li>Memvisualisasikan konsep yang kompleks dan abstrak (seperti anatomi) menjadi lebih nyata.</li>
+                            <li>Meningkatkan pemahaman spasial dan ketertarikan siswa.</li>
+                            <li>Memberikan pengalaman belajar yang "hands-on" dan imersif.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tombol Aksi (Call to Action) -->
+                <div class="text-center mt-10">
+                    <a href="https://assemblrworld.com/assemblr-studio" target="_blank" rel="noopener noreferrer" class="nav-button py-3 px-8 rounded-lg font-bold text-lg inline-block">
+                        <i class="fas fa-external-link-alt mr-2"></i>Kunjungi Assemblr Studio
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
+

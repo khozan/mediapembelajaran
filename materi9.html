@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misi 9: Virtual & Augmented Reality</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #020024 0%, #090979 35%, #00d4ff 100%);
+            overflow-x: hidden;
+            color: #e0f2fe;
+        }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .glass-card {
+            background: rgba(2, 0, 36, 0.3);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+        .nav-button {
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid rgba(0, 212, 255, 0.7);
+            transition: all 0.3s ease;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .nav-button:hover {
+            background: rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .back-button {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: 50;
+        }
+        .quiz-option {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+        .quiz-option:hover {
+            background-color: rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.8);
+        }
+        .quiz-option.selected {
+            background-color: rgba(0, 212, 255, 0.3);
+            border-color: #00d4ff;
+        }
+        .quiz-option.correct {
+            background-color: rgba(22, 163, 74, 0.5);
+            border-color: #16a34a;
+        }
+        .quiz-option.incorrect {
+            background-color: rgba(220, 38, 38, 0.5);
+            border-color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="min-h-screen p-4 sm:p-8">
+
+        <!-- ===== HALAMAN UTAMA (HOME) ===== -->
+        <section id="homeSection" class="min-h-screen flex flex-col items-center justify-center text-center">
+            <div class="glass-card max-w-5xl w-full">
+                <h1 class="font-cinzel text-4xl md:text-6xl font-bold" style="text-shadow: 0 0 15px rgba(0, 212, 255, 0.8);">Misi 9: Virtual & Augmented Reality</h1>
+                <p class="mt-4 mb-8 max-w-2xl mx-auto text-gray-300">Masuki dimensi baru! Misi ini akan membawa kita ke dunia Virtual (VR) dan Augmented Reality (AR) untuk pembelajaran bahasa Arab yang imersif.</p>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <button onclick="showSection('materi1Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-vr-cardboard text-3xl mb-2"></i><br>Konsep Dasar VR & AR
+                    </button>
+                    <button onclick="showSection('materi2Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-street-view text-3xl mb-2"></i><br>Manfaat & Penerapan VR
+                    </button>
+                    <button onclick="showSection('materi3Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-mobile-alt text-3xl mb-2"></i><br>Manfaat & Penerapan AR
+                    </button>
+                    <button onclick="showSection('materi4Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-shield-alt text-3xl mb-2"></i><br>Tantangan & Kesimpulan
+                    </button>
+                     <a href="tutorial assembler.html" class="nav-button p-4 rounded-lg font-semibold text-center">
+                        <i class="fas fa-video text-3xl mb-2"></i><br>Tutorial Assembler
+                    </a>
+                    <button onclick="showSection('quizSection')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-question-circle text-3xl mb-2"></i><br>Uji Pengetahuan
+                    </button>
+                </div>
+                <a href="index.html" class="inline-block mt-8 text-cyan-300 hover:text-white transition">
+                    <i class="fas fa-arrow-left mr-2"></i>Kembali ke Peta Misi
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 1 ===== -->
+        <section id="materi1Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Konsep Dasar & Pentingnya VR/AR</h3>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Definisi</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li><b>Virtual Reality (VR):</b> Teknologi yang menciptakan lingkungan buatan (simulasi) secara digital, memungkinkan pengguna berinteraksi di dalamnya.</li>
+                            <li><b>Augmented Reality (AR):</b> Teknologi yang menggabungkan elemen digital (teks, gambar 3D) dengan dunia nyata melalui perangkat (misal: smartphone).</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">B. Pentingnya dalam Pembelajaran Bahasa</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                           <li><b>Interaktif & Imersif:</b> Meningkatkan keterlibatan siswa dalam lingkungan belajar yang hidup dan nyata.</li>
+                           <li><b>Pembelajaran Kontekstual:</b> Siswa dapat mempraktikkan bahasa dalam konteks budaya dan situasi nyata (misal: di pasar virtual).</li>
+                           <li><b>Meningkatkan Motivasi:</b> Memberikan pengalaman belajar yang menarik dan menyenangkan.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 2 ===== -->
+        <section id="materi2Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-4xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Manfaat & Penerapan Virtual Reality (VR)</h3>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Manfaat VR</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li><b>Imersi dalam Budaya Arab:</b> Siswa dapat "mengunjungi" lingkungan virtual seperti pasar Arab atau situs sejarah Islam, memberikan konteks budaya yang kaya.</li>
+                            <li><b>Pengalaman Dialog Interaktif:</b> Mensimulasikan percakapan dengan penutur asli dalam konteks kehidupan sehari-hari (jual-beli, bertanya arah).</li>
+                            <li><b>Pengembangan Kosakata:</b> Mempermudah belajar kosakata yang terkait dengan situasi atau lokasi tertentu (misal: benda-benda di masjid).</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg mt-4">B. Penerapan VR</h4>
+                         <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li><b>Simulasi Dialog:</b> Latihan percakapan di pasar, restoran, atau bandara virtual.</li>
+                            <li><b>Eksplorasi Lingkungan Budaya:</b> Tur virtual ke masjid, museum, atau tempat bersejarah Islam untuk belajar kosakata budaya.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===== HALAMAN MATERI 3 ===== -->
+        <section id="materi3Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                 <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Manfaat & Penerapan Augmented Reality (AR)</h3>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Manfaat AR</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                           <li><b>Pengayaan Buku Teks:</b> Memindai (scan) gambar di buku untuk memunculkan ilustrasi 3D, video, atau audio penjelasan.</li>
+                           <li><b>Interaksi Visual Real-Time:</b> Mengenali benda atau tulisan Arab di lingkungan sekitar dan memberikan terjemahannya.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">B. Penerapan AR</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                           <li><b>Aplikasi Visualisasi Tulisan Arab:</b> Memindai teks Arab untuk melihat arti atau cara pengucapan yang benar.</li>
+                           <li><b>Kartu Kosakata (Flashcard) 3D:</b> Memindai kartu untuk memunculkan objek 3D dari kosakata tersebut.</li>
+                           <li><b>Buku Interaktif:</b> Buku teks yang diperkaya dengan elemen AR (video, audio, model 3D).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===== HALAMAN MATERI 4 ===== -->
+        <section id="materi4Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-4xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Tantangan & Kesimpulan</h3>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Tantangan Penggunaan</h4>
+                         <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li><b>Biaya dan Aksesibilitas:</b> Teknologi VR/AR masih cukup mahal dan memerlukan perangkat khusus.</li>
+                            <li><b>Adaptasi Kurikulum:</b> Kurikulum perlu fleksibel untuk mengintegrasikan teknologi ini.</li>
+                            <li><b>Kemampuan Teknis Pengajar:</b> Pengajar perlu dilatih untuk mengoperasikan dan mengintegrasikannya.</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg mt-4">B. Kesimpulan & Saran</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li><b>Kesimpulan:</b> VR dan AR adalah media inovatif yang mampu meningkatkan keterlibatan, pemahaman budaya, dan keterampilan bahasa Arab.</li>
+                            <li><b>Saran Implementasi:</b>
+                                <ul class="list-circle list-inside ml-6">
+                                    <li>Mulai dengan aplikasi sederhana (sesuai anggaran).</li>
+                                    <li>Lakukan pelatihan komprehensif untuk pengajar.</li>
+                                    <li>Integrasikan secara bertahap ke dalam kurikulum.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN QUIZ ===== -->
+        <section id="quizSection" class="hidden relative min-h-screen flex flex-col items-center justify-center">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-center mb-8">Arena Ujian Dimensi</h2>
+                <div id="quizContainer" class="space-y-6"></div>
+                <div class="text-center mt-8">
+                    <button id="submitQuizBtn" class="nav-button py-3 px-8 rounded-lg font-bold text-lg">Cek Jawaban</button>
+                    <p id="quizResult" class="mt-4 text-xl font-bold"></p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const synth = new Tone.Synth().toDestination();
+
+        function showSection(sectionId) {
+            Tone.start();
+            synth.triggerAttackRelease('C4', '8n');
+            sections.forEach(section => {
+                section.classList.toggle('hidden', section.id !== sectionId);
+            });
+            window.scrollTo(0, 0);
+        }
+
+        const quizData = [
+            // Mengetahui
+            { question: "Teknologi yang menciptakan lingkungan buatan (simulasi) secara digital penuh disebut...", options: ["Augmented Reality (AR)", "Virtual Reality (VR)", "Mixed Reality (MR)", "Artificial Intelligence (AI)"], answer: "Virtual Reality (VR)" },
+            { question: "Teknologi yang menggabungkan elemen digital (seperti 3D) dengan dunia nyata melalui kamera smartphone disebut...", options: ["Augmented Reality (AR)", "Virtual Reality (VR)", "Simulation Reality (SR)", "Artificial Intelligence (AI)"], answer: "Augmented Reality (AR)" },
+            // Memahami
+            { question: "Apa manfaat utama VR dalam pembelajaran bahasa Arab?", options: ["Hanya untuk bermain game.", "Memberikan pengalaman imersif dalam konteks budaya dan dialog.", "Membuat buku teks lebih murah.", "Hanya fokus pada latihan menulis."], answer: "Memberikan pengalaman imersif dalam konteks budaya dan dialog." },
+            { question: "Manfaat utama AR dalam pembelajaran bahasa Arab adalah...", options: ["Menggantikan guru sepenuhnya.", "Mengadakan simulasi percakapan di dunia virtual.", "Mengayakan buku teks dan objek dunia nyata dengan info digital.", "Tidak memerlukan perangkat apapun."], answer: "Mengayakan buku teks dan objek dunia nyata dengan info digital." },
+            // Menerapkan
+            { question: "Seorang guru ingin siswa berlatih tawar-menawar di pasar Arab secara realistis tanpa harus ke Arab. Teknologi apa yang paling tepat?", options: ["Augmented Reality (AR)", "Virtual Reality (VR)", "Quizizz", "Google Docs"], answer: "Virtual Reality (VR)" },
+            { question: "Seorang siswa memindai (scan) buku pelajarannya dan muncul model 3D Ka'bah di atas buku tersebut. Ini adalah contoh...", options: ["Virtual Reality (VR)", "Augmented Reality (AR)", "Artificial Intelligence (AI)", "Media Sosial"], answer: "Augmented Reality (AR)" },
+            // Menganalisis
+            { question: "Apa perbedaan mendasar antara VR dan AR?", options: ["VR mahal, AR murah.", "VR menggantikan realitas, AR menambahkan sesuatu ke realitas.", "VR hanya untuk audio, AR untuk visual.", "VR butuh internet, AR tidak."], answer: "VR menggantikan realitas, AR menambahkan sesuatu ke realitas." },
+            { question: "Manakah yang merupakan tantangan utama implementasi VR/AR di sekolah berdasarkan materi?", options: ["Siswa tidak menyukainya.", "Biaya perangkat, adaptasi kurikulum, dan kesiapan teknis pengajar.", "Terlalu banyak konten bahasa Arab.", "Sulit diintegrasikan dengan media sosial."], answer: "Biaya perangkat, adaptasi kurikulum, dan kesiapan teknis pengajar." },
+            // Mengevaluasi
+            { question: "Sebuah sekolah ingin mulai menggunakan AR/VR namun memiliki anggaran terbatas. Saran implementasi terbaik adalah...", options: ["Langsung membeli perangkat VR paling canggih untuk semua siswa.", "Fokus pada aplikasi AR sederhana di smartphone siswa dan melatih guru.", "Membatalkan rencana karena pasti gagal.", "Hanya menggunakannya untuk guru, bukan siswa."], answer: "Fokus pada aplikasi AR sederhana di smartphone siswa dan melatih guru." },
+            { question: "Mengapa 'pembelajaran kontekstual' sangat ditekankan sebagai keunggulan VR/AR?", options: ["Karena siswa bisa belajar sambil tiduran.", "Karena siswa bisa belajar di konteks nyata (atau simulasi nyata) di mana bahasa itu digunakan.", "Karena lebih mudah dinilai oleh guru.", "Karena tidak perlu menghafal kosakata."], answer: "Karena siswa bisa belajar di konteks nyata (atau simulasi nyata) di mana bahasa itu digunakan." }
+        ];
+
+        const quizContainer = document.getElementById('quizContainer');
+        const submitQuizBtn = document.getElementById('submitQuizBtn');
+        const quizResult = document.getElementById('quizResult');
+
+        function loadQuiz() {
+            quizContainer.innerHTML = '';
+            quizData.forEach((item, index) => {
+                const questionEl = document.createElement('div');
+                questionEl.innerHTML = `<p class="font-semibold text-lg mb-3">${index + 1}. ${item.question}</p>`;
+                const optionsEl = document.createElement('div');
+                optionsEl.classList.add('space-y-2');
+                optionsEl.id = `q${index}`;
+                item.options.forEach(option => {
+                    optionsEl.innerHTML += `<label class="quiz-option block p-3 rounded-lg cursor-pointer"><input type="radio" name="question${index}" value="${option}" class="hidden"><span>${option}</span></label>`;
+                });
+                questionEl.appendChild(optionsEl);
+                quizContainer.appendChild(questionEl);
+            });
+            
+            document.querySelectorAll('.quiz-option').forEach(item => {
+                item.addEventListener('click', () => {
+                    item.parentElement.querySelectorAll('.quiz-option').forEach(label => label.classList.remove('selected'));
+                    item.classList.add('selected');
+                });
+            });
+        }
+
+        submitQuizBtn.addEventListener('click', () => {
+            let score = 0;
+            quizData.forEach((item, index) => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                document.querySelectorAll(`#q${index} .quiz-option`).forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    if (label.querySelector('input').value === item.answer) {
+                        label.classList.add('correct');
+                    }
+                });
+                if (selectedOption) {
+                    if (selectedOption.value === item.answer) {
+                        score++;
+                    } else {
+                        selectedOption.parentElement.classList.add('incorrect');
+                    }
+                }
+            });
+            quizResult.textContent = `Skor Anda: ${score} dari ${quizData.length}`;
+            Tone.start();
+            synth.triggerAttackRelease(score === quizData.length ? 'G5' : 'C3', '8n');
+        });
+
+        loadQuiz();
+    </script>
+
+</body>
+</html>
