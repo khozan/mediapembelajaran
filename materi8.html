@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misi 8: Aplikasi Mobile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #020024 0%, #090979 35%, #00d4ff 100%);
+            overflow-x: hidden;
+            color: #e0f2fe;
+        }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .glass-card {
+            background: rgba(2, 0, 36, 0.3);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+        .nav-button {
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid rgba(0, 212, 255, 0.7);
+            transition: all 0.3s ease;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .nav-button:hover {
+            background: rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .back-button {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: 50;
+        }
+        .quiz-option {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+        .quiz-option:hover {
+            background-color: rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.8);
+        }
+        .quiz-option.selected {
+            background-color: rgba(0, 212, 255, 0.3);
+            border-color: #00d4ff;
+        }
+        .quiz-option.correct {
+            background-color: rgba(22, 163, 74, 0.5);
+            border-color: #16a34a;
+        }
+        .quiz-option.incorrect {
+            background-color: rgba(220, 38, 38, 0.5);
+            border-color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="min-h-screen p-4 sm:p-8">
+
+        <!-- ===== HALAMAN UTAMA (HOME) ===== -->
+        <section id="homeSection" class="min-h-screen flex flex-col items-center justify-center text-center">
+            <div class="glass-card max-w-5xl w-full">
+                <h1 class="font-cinzel text-4xl md:text-6xl font-bold" style="text-shadow: 0 0 15px rgba(0, 212, 255, 0.8);">Misi 8: Aplikasi Mobile</h1>
+                <p class="mt-4 mb-8 max-w-2xl mx-auto text-gray-300">Saatnya membawa pembelajaran ke genggamanmu! Misi ini akan menjelajahi pemanfaatan aplikasi mobile untuk menguasai bahasa Arab di mana saja dan kapan saja.</p>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    <button onclick="showSection('materi1Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-mobile-alt text-3xl mb-2"></i><br>Konsep & Keunggulan
+                    </button>
+                    <button onclick="showSection('materi2Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-list-ul text-3xl mb-2"></i><br>Jenis & Contoh App
+                    </button>
+                    <button onclick="showSection('materi3Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-cogs text-3xl mb-2"></i><br>Fitur & Tantangan
+                    </button>
+                    <button onclick="showSection('materi4Section')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-chalkboard-teacher text-3xl mb-2"></i><br>Strategi & Studi Kasus
+                    </button>
+                    <button onclick="showSection('quizSection')" class="nav-button p-4 rounded-lg font-semibold">
+                        <i class="fas fa-question-circle text-3xl mb-2"></i><br>Uji Pengetahuan
+                    </button>
+                </div>
+                <a href="index.html" class="inline-block mt-8 text-cyan-300 hover:text-white transition">
+                    <i class="fas fa-arrow-left mr-2"></i>Kembali ke Peta Misi
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 1 ===== -->
+        <section id="materi1Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Konsep, Latar Belakang & Keunggulan</h3>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Latar Belakang & Tantangan</h4>
+                        <p>Bahasa Arab (274 juta penutur) memiliki tantangan seperti keterbatasan sumber daya, motivasi siswa, serta perbedaan alfabet dan tata bahasa.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">B. Teknologi Mobile dalam Pendidikan</h4>
+                        <p>Mengacu pada perangkat (smartphone/tablet) yang memungkinkan akses internet dan aplikasi pembelajaran. Pembelajaran bahasa digital meningkat ~20% setiap tahun.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">C. Keunggulan Aplikasi Mobile</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                           <li><b>Fleksibilitas:</b> Siswa dapat belajar kapan saja dan di mana saja.</li>
+                           <li><b>Personal:</b> Aplikasi bisa menyesuaikan level sesuai kemampuan siswa.</li>
+                           <li><b>Interaksi & Umpan Balik:</b> Siswa mendapat koreksi otomatis dan bantuan langsung.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN MATERI 2 ===== -->
+        <section id="materi2Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-4xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Jenis & Contoh Aplikasi</h3>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Jenis-Jenis Aplikasi (per Keterampilan)</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li><b>Kosa Kata (Mufrodat):</b> Fokus pengulangan (Contoh: Drops, Memrise).</li>
+                            <li><b>Tata Bahasa (Qowaid):</b> Materi bertahap (Contoh: Duolingo).</li>
+                            <li><b>Mendengarkan (Istima):</b> Latihan mendengarkan & pengucapan (Contoh: Mango Languages).</li>
+                            <li><b>Berbicara (Kalam):</b> Fitur pengenalan suara & percakapan (Contoh: HelloTalk).</li>
+                            <li><b>Membaca & Menulis (Qira’ah/Kitabah):</b> Latihan membaca & menulis (Contoh: Rosetta Stone).</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg mt-4">B. Contoh Aplikasi Populer</h4>
+                        <div class="grid md:grid-cols-2 gap-4 mt-2">
+                            <div class="bg-cyan-900/30 p-3 rounded-lg"><b>Duolingo:</b> Modul dasar-menengah dengan metode gamifikasi.</div>
+                            <div class="bg-cyan-900/30 p-3 rounded-lg"><b>Memrise:</b> Metode pengulangan (flashcard) dengan audio native speaker.</div>
+                            <div class="bg-cyan-900/30 p-3 rounded-lg"><b>HelloTalk:</b> Platform untuk berbicara langsung dengan penutur asli.</div>
+                            <div class="bg-cyan-900/30 p-3 rounded-lg"><b>Mango Languages:</b> Program interaktif dengan modul terstruktur.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===== HALAMAN MATERI 3 ===== -->
+        <section id="materi3Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                 <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Fitur Penting & Tantangan</h3>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Fitur yang Dibutuhkan</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                           <li><b>Audio & Visual Interaktif:</b> Penting untuk melatih istima' dan kalam.</li>
+                           <li><b>Latihan Interaktif:</b> Memperkuat pemahaman tata bahasa dan kosa kata.</li>
+                           <li><b>Umpan Balik Langsung:</b> Membantu siswa memahami kesalahan.</li>
+                           <li><b>Pelacakan Kemajuan (Progress Tracking):</b> Memantau perkembangan dan memotivasi.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">B. Tantangan Pemanfaatan</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                           <li><b>Keterbatasan Teknologi:</b> Tidak semua siswa punya perangkat/internet stabil.</li>
+                           <li><b>Biaya Aplikasi Premium:</b> Aplikasi gratis seringkali terbatas materinya.</li>
+                           <li><b>Motivasi Belajar Mandiri:</b> Memerlukan kedisiplinan tinggi.</li>
+                           <li><b>Kualitas Materi:</b> Beberapa aplikasi tidak akurat (tata bahasa/pengucapan).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===== HALAMAN MATERI 4 ===== -->
+        <section id="materi4Section" class="hidden relative min-h-screen flex flex-col items-center justify-center py-10">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-4xl w-full">
+                <div class="border border-cyan-500/30 p-4 rounded-lg space-y-4 text-gray-300">
+                    <h3 class="font-semibold text-2xl text-cyan-300 mb-4 text-center">Implementasi, Studi Kasus & Kesimpulan</h3>
+                    <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg">A. Strategi Implementasi di Kelas</h4>
+                         <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li><b>Blended Learning:</b> Menggabungkan aplikasi dengan tatap muka.</li>
+                            <li><b>Alat Tambahan:</b> Aplikasi sebagai pelengkap, bukan pengganti guru.</li>
+                            <li><b>Penugasan Berbasis Aplikasi:</b> Tugas praktik kosa kata atau istima'.</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg mt-4">B. Studi Kasus & Penelitian</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li><b>Riset di Indonesia (SMA):</b> Menunjukkan peningkatan motivasi belajar hingga 40%.</li>
+                            <li><b>Data Pendukung:</b> Blended learning meningkatkan keterampilan berbicara hingga 50%.</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-cyan-400 text-lg mt-4">C. Kesimpulan & Rekomendasi</h4>
+                        <p>Aplikasi mobile efektif jika digunakan sebagai bagian dari <i>blended learning</i>. Guru harus aktif menyeleksi aplikasi yang terpercaya dan memantau siswa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HALAMAN QUIZ ===== -->
+        <section id="quizSection" class="hidden relative min-h-screen flex flex-col items-center justify-center">
+            <button onclick="showSection('homeSection')" class="back-button nav-button p-3 rounded-full text-xl"><i class="fas fa-arrow-left"></i></button>
+            <div class="glass-card max-w-3xl w-full">
+                <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-center mb-8">Arena Ujian Mobile</h2>
+                <div id="quizContainer" class="space-y-6"></div>
+                <div class="text-center mt-8">
+                    <button id="submitQuizBtn" class="nav-button py-3 px-8 rounded-lg font-bold text-lg">Cek Jawaban</button>
+                    <p id="quizResult" class="mt-4 text-xl font-bold"></p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const synth = new Tone.Synth().toDestination();
+
+        function showSection(sectionId) {
+            Tone.start();
+            synth.triggerAttackRelease('C4', '8n');
+            sections.forEach(section => {
+                section.classList.toggle('hidden', section.id !== sectionId);
+            });
+            window.scrollTo(0, 0);
+        }
+
+        const quizData = [
+            // Mengetahui
+            { question: "Salah satu tantangan utama pembelajaran bahasa Arab yang disebut dalam materi adalah...", options: ["Perbedaan alfabet dan tata bahasa", "Terlalu banyak penutur asli", "Kurangnya minat global", "Biaya guru yang murah"], answer: "Perbedaan alfabet dan tata bahasa" },
+            { question: "Aplikasi yang fokus pada pengulangan kosa kata (mufrodat) menggunakan flashcard adalah...", options: ["HelloTalk", "Duolingo", "Memrise", "Mango Languages"], answer: "Memrise" },
+            // Memahami
+            { question: "Mengapa 'fleksibilitas' dianggap sebagai keunggulan utama aplikasi mobile?", options: ["Karena aplikasinya selalu gratis.", "Karena siswa dapat belajar kapan saja dan di mana saja.", "Karena materinya selalu akurat.", "Karena tidak perlu internet."], answer: "Karena siswa dapat belajar kapan saja dan di mana saja." },
+            { question: "Apa yang dimaksud dengan 'Blended Learning' dalam strategi implementasi?", options: ["Hanya belajar melalui aplikasi.", "Menggabungkan pembelajaran via aplikasi dengan tatap muka.", "Belajar bahasa Arab dan bahasa Inggris bersamaan.", "Menggunakan banyak aplikasi sekaligus."], answer: "Menggabungkan pembelajaran via aplikasi dengan tatap muka." },
+            // Menerapkan
+            { question: "Seorang siswa ingin berlatih percakapan (kalam) langsung dengan penutur asli Arab. Aplikasi apa yang paling cocok?", options: ["Duolingo", "Memrise", "HelloTalk", "Drops"], answer: "HelloTalk" },
+            { question: "Seorang guru memberi tugas latihan tata bahasa (qowaid) via aplikasi yang bisa langsung dikoreksi otomatis. Fitur apa yang sedang dimanfaatkan?", options: ["Pelacakan Kemajuan", "Audio Interaktif", "Umpan Balik Langsung", "Visual Interaktif"], answer: "Umpan Balik Langsung" },
+            // Menganalisis
+            { question: "Jika seorang siswa memiliki motivasi belajar mandiri yang rendah, apa tantangan utama yang akan dihadapinya saat menggunakan aplikasi?", options: ["Aplikasi premium terlalu mahal.", "Memerlukan kedisiplinan tinggi yang mungkin tidak dimilikinya.", "Kualitas materi aplikasi yang buruk.", "Keterbatasan jaringan internet."], answer: "Memerlukan kedisiplinan tinggi yang mungkin tidak dimilikinya." },
+            { question: "Apa perbedaan utama antara Duolingo dan HelloTalk berdasarkan materi?", options: ["Duolingo fokus pada tata bahasa/gamifikasi, HelloTalk pada percakapan langsung.", "Duolingo berbayar, HelloTalk gratis.", "Duolingo untuk pemula, HelloTalk untuk ahli.", "Duolingo tidak ada bahasa Arab."], answer: "Duolingo fokus pada tata bahasa/gamifikasi, HelloTalk pada percakapan langsung." },
+            // Mengevaluasi
+            { question: "Menurut studi kasus di SMA Indonesia, apa dampak positif utama penggunaan aplikasi mobile?", options: ["Peningkatan nilai ujian nasional.", "Peningkatan motivasi belajar hingga 40%.", "Siswa menjadi mahir dalam 1 bulan.", "Semua siswa membeli smartphone baru."], answer: "Peningkatan motivasi belajar hingga 40%." },
+            { question: "Seorang guru menemukan aplikasi gratis, tapi pengucapannya tidak akurat. Keputusan terbaik menurut rekomendasi materi adalah...", options: ["Tetap menggunakannya karena gratis.", "Hanya menggunakannya untuk latihan menulis.", "Tidak menggunakannya dan mencari aplikasi lain yang terpercaya.", "Meminta siswa memperbaiki sendiri pengucapannya."], answer: "Tidak menggunakannya dan mencari aplikasi lain yang terpercaya." }
+        ];
+
+        const quizContainer = document.getElementById('quizContainer');
+        const submitQuizBtn = document.getElementById('submitQuizBtn');
+        const quizResult = document.getElementById('quizResult');
+
+        function loadQuiz() {
+            quizContainer.innerHTML = '';
+            quizData.forEach((item, index) => {
+                const questionEl = document.createElement('div');
+                questionEl.innerHTML = `<p class="font-semibold text-lg mb-3">${index + 1}. ${item.question}</p>`;
+                const optionsEl = document.createElement('div');
+                optionsEl.classList.add('space-y-2');
+                optionsEl.id = `q${index}`;
+                item.options.forEach(option => {
+                    optionsEl.innerHTML += `<label class="quiz-option block p-3 rounded-lg cursor-pointer"><input type="radio" name="question${index}" value="${option}" class="hidden"><span>${option}</span></label>`;
+                });
+                questionEl.appendChild(optionsEl);
+                quizContainer.appendChild(questionEl);
+            });
+            
+            document.querySelectorAll('.quiz-option').forEach(item => {
+                item.addEventListener('click', () => {
+                    item.parentElement.querySelectorAll('.quiz-option').forEach(label => label.classList.remove('selected'));
+                    item.classList.add('selected');
+                });
+            });
+        }
+
+        submitQuizBtn.addEventListener('click', () => {
+            let score = 0;
+            quizData.forEach((item, index) => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                document.querySelectorAll(`#q${index} .quiz-option`).forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    if (label.querySelector('input').value === item.answer) {
+                        label.classList.add('correct');
+                    }
+                });
+                if (selectedOption) {
+                    if (selectedOption.value === item.answer) {
+                        score++;
+                    } else {
+                        selectedOption.parentElement.classList.add('incorrect');
+                    }
+                }
+            });
+            quizResult.textContent = `Skor Anda: ${score} dari ${quizData.length}`;
+            Tone.start();
+            synth.triggerAttackRelease(score === quizData.length ? 'G5' : 'C3', '8n');
+        });
+
+        loadQuiz();
+    </script>
+
+</body>
+</html>
